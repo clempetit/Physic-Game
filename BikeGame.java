@@ -18,10 +18,16 @@ import ch.epfl.cs107.play.window.Window;
 public class BikeGame extends ActorGame{
 	private Polyline polyline;
 	private Terrain terrain;
+	private Crate crate1;
+	private Crate crate2;
+	private Crate crate3;
 	
 	@Override
     public boolean begin(Window window, FileSystem fileSystem) {
         super.begin(window, fileSystem);
+        
+        final float crateWidth = 1.0f;
+        final float crateHeight = 1.0f;
         
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
@@ -39,6 +45,9 @@ public class BikeGame extends ActorGame{
 				);
         
         terrain = new Terrain(this, polyline, Color.GRAY, Color.green, 1.0f);
+        crate1 = new Crate(this, false, new Vector(0.0f, 5.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
+        crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
+        crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
  
         return true;
     }
