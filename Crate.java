@@ -49,17 +49,4 @@ public class Crate extends GameEntity implements Actor {
 		crateGraphics.draw(canvas);
 	}
 
-	@Override
-	public Transform getTransform() {
-		// TODO Auto-generated method stub
-		return super.getTransform();
-	}
-
-	@Override
-	public Vector getVelocity() {
-		// TODO Auto-generated method stub
-		return super.getVelocity();
-	}
-
-
 }
