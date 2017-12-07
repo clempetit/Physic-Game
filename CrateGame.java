@@ -6,20 +6,12 @@
 package ch.epfl.cs107.play.game.actor.crate;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
-import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.io.FileSystem;
-import ch.epfl.cs107.play.math.Entity;
-import ch.epfl.cs107.play.math.EntityBuilder;
-import ch.epfl.cs107.play.math.PartBuilder;
-import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Window;
 
 
 public class CrateGame extends ActorGame{
-	private EntityBuilder entityBuilder;
 	private Crate crate1;
 	private Crate crate2;
 	private Crate crate3;
@@ -28,14 +20,9 @@ public class CrateGame extends ActorGame{
     public boolean begin(Window window, FileSystem fileSystem) {
         super.begin(window, fileSystem);
         
-        
 		final float crateWidth = 1.0f;
         final float crateHeight = 1.0f;
-        final float crateGaphicsWidth = 1.0f;
-        final float crateGraphicsHeight = 1.0f;
-         
         
-     // part building for crate
         crate1 = new Crate(this, false, new Vector(0.0f, 5.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
@@ -54,3 +41,4 @@ public class CrateGame extends ActorGame{
     }
 
 }
+
