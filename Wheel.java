@@ -52,37 +52,40 @@ public class Wheel extends GameEntity implements Actor{
 	public void attach(Entity vehicle, Vector anchor, Vector axis) {
 		WheelConstraintBuilder constraintBuilder = getOwner().createWheelConstraintBuilder();
 		constraintBuilder.setFirstEntity(vehicle);
-		// point d'ancrage du véhicule :
+		// point d'ancrage du véhicule :
 		constraintBuilder.setFirstAnchor(anchor);
-		// Entity associée à la roue :
+		// Entity associée à la roue :
 		constraintBuilder.setSecondEntity(getEntity());
 		// point d'ancrage de la roue (son centre):
 		constraintBuilder.setSecondAnchor(Vector.ZERO);
-		// axe le long duquel la roue peut se déplacer :
+		// axe le long duquel la roue peut se déplacer :
 		constraintBuilder.setAxis(axis);
-		// fréquence du ressort associé
+		// fréquence du ressort associé
 		constraintBuilder.setFrequency(3.0f); constraintBuilder.setDamping(0.5f);
-		// force angulaire maximale pouvant être appliquée //à la roue pour la faire tourner :
+		// force angulaire maximale pouvant être appliquée //à la roue pour la faire tourner :
 		constraintBuilder.setMotorMaxTorque(10.0f);
 		constraint = constraintBuilder.build();
 	}
 	
 	public void power(float speed) {
-		
+		constraint.setMotorEnabled(true);
+		constraint.setMotorSpeed(speed);
 	}
 	
 	public void relax() {
-		
+		constraint.setMotorEnabled(false);
 	}
 	
 	public void detach() {
-		
+		constraint.destroy();
 	}
 	
 	/**
 	@return relative rotation speed, in radians per second */
 	public float getSpeed() {
-		return 0.0f;
+		float rotationSpeed = constraint.getMotorSpeed();
+		float vehicleSpeed = getEntity().getAngularVelocity();
+		return rotationSpeed-vehicleSpeed;
 	}
 
 }
