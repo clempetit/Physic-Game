@@ -1,76 +1,146 @@
-*	Author:      Clément Petit
+/*
+ *	Author:      Clément Petit
  *	Date:        15.10.2015
  */
 
-package ch.epfl.cs107.play.game.actor;
+package ch.epfl.cs107.play.game.actor.bike;
 
-import ch.epfl.cs107.play.math.Entity;
-import ch.epfl.cs107.play.math.EntityBuilder;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+
+import ch.epfl.cs107.play.game.actor.ActorGame;
+import ch.epfl.cs107.play.game.actor.TextGraphics;
+import ch.epfl.cs107.play.game.actor.crate.Crate;
+import ch.epfl.cs107.play.game.actor.general.Terrain;
+import ch.epfl.cs107.play.io.FileSystem;
+import ch.epfl.cs107.play.math.Polygon;
+import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.window.Window;
 
-public abstract class GameEntity {
-	private Entity entity;
-	private ActorGame game;
-	private EntityBuilder entityBuilder;
+public class BikeGame extends ActorGame{
+	private Polyline polyline;
+	private Terrain terrain;
+	private Polygon polygon;
+	private Crate crate1;
+	private Crate crate2;
+	private Crate crate3;
+	private Bike bike;
+	private Finish finish;
+	private TextGraphics message;
+	private TextGraphics message1;
+	private TextGraphics message_fixBug ; 
+	private boolean finished;
 	
-	
-	public GameEntity(ActorGame game, boolean fixed, Vector position) {
-		try{
-			if(game == null|| position == null) {
-				throw new NullPointerException();
-			}
-			this.game = game;
-			entityBuilder = game.createEntityBuilder();
-			entityBuilder.setFixed(fixed);
-		    entityBuilder.setPosition(position);
-		    entity = entityBuilder.build();
-		} catch(NullPointerException e) {
-			System.out.println("Paramètre(s) indispensable(s) valant null");
-		}  
-	}
-	
-	public GameEntity(ActorGame game, boolean fixed) {
-		try {
-			if (game == null) {
-				throw new NullPointerException();
-			}
-			this.game = game;
-			entityBuilder = game.createEntityBuilder();
-			entityBuilder.setFixed(fixed);
-			entity = entityBuilder.build();
-		} catch (NullPointerException e) {
-			System.out.println("Paramètre(s) indispensable(s) valant null");
-		}
-	}
-	
-	public void destroy() {
-        entity.destroy();
+	@Override
+    public boolean begin(Window window, FileSystem fileSystem) {
+        super.begin(window, fileSystem);
+        finished = false;
+        final float crateWidth = 1.0f;
+        final float crateHeight = 1.0f;
+        
+        /* Message vide du départ pour pallier au problème
+         * de latence lors de l'arrivée du cycliste (sur mac)
+         */
+        message_fixBug = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
+        message_fixBug.setParent(getCanvas());
+        message_fixBug.draw(getCanvas());
+        
+        polyline = new Polyline(
+				-1000.0f, -1000.0f,
+				-1000.0f, 0.0f, 0.0f, 0.0f,
+				3.0f, 1.0f,
+				8.0f, 1.0f,
+				15.0f, 3.0f,
+				16.0f, 3.0f,
+				25.0f, 0.0f,
+				35.0f, -5.0f,
+				50.0f, -5.0f,
+				55.0f, -4.0f,
+				65.0f, 0.0f,
+				6500.0f, -1000.0f
+				);
+		
+        
+        terrain = new Terrain(this, polyline, Color.GRAY, Color.green, 1.0f);
+        crate1 = new Crate(this, false, new Vector(0.0f, 5.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
+        crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
+        crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
+        bike = new Bike(this, false, new Vector(4.0f, 5.0f));
+        finish = new Finish(this, new Vector(45.0f, -5.0f));
+        this.setViewCandidates(bike);
+        return true;
     }
-	
+    
+    @Override
+    public void update(float deltaTime) {
+    	super.update(deltaTime);
+    	 	
+    	 if(bike.getHit()) {
+    		       bike.destroy();
+		       showText("PERDU !", 0.3f);
+    		       } 
+    	 	
+    	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
+    		 if(!(finished)) {
+    	 		bike.setOppositeDirection(bike.getDirection());
+    		 }
+    	 	}
+    	 	
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
+     	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
+     	 		bike.MoveRight();		
+     	 	}
+     	 	else {
+     	 		bike.MoveLeft();
+     	 	}
+     	 }
+    	 else {
+    		 bike.getLeftWheel().relax();
+    		 bike.getRightWheel().relax();
+    	 } 
+    	 
+    	 
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
+    	 		bike.getRightWheel().power(0.f);
+    	 		bike.getLeftWheel().power(0.f);
+    	 	}
+   	
+	 if (this.window.getKeyboard().get(KeyEvent.VK_R).isPressed()){
+    		 removeAllActors();
+    		 restart(this, deltaTime);
+    	 	}
+	    
+    	 if (finish.getListener().hasContactWith(bike.getEntity())){
+    	    finished = true;
+    	 	}
+    	 
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
+    		 if(!(finished)) {
+     	 		bike.getBike().applyAngularForce(-30.0f);
+     	 	}
+    	 }
+    	 	
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
+    		 if(!(finished)) {
+      	 		bike.getBike().applyAngularForce(30.0f);
+      	 	}
+    	 }
+    	 
+    	 if (finished) {
+     		finish.destroy();
+     		showText("BRAVO !", 0.3f);
+      	 	bike.getRightWheel().power(0.f);
+      	 	bike.getLeftWheel().power(0.f);
+     	 }
+    }
+    
+    
 
-	protected Entity getEntity() {
-		return entity;
-	}
-	
-	protected ActorGame getOwner() {
-		return game;
-	}
-	
-	public  boolean compare(Entity compared) {
-		if(getEntity()==compared) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	public Transform getTransform() {
-		return getEntity().getTransform();
-	}
-	public Vector getVelocity() {
-		return getEntity().getVelocity();
-	}
-	
-
+    @Override
+    public void end() {
+    }
+    
+    
 }
