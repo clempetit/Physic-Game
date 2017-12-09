@@ -34,10 +34,14 @@ public class Wheel extends GameEntity implements Actor{
 			partBuilder.setShape(circle);
 	        partBuilder.build();
 	        
-	        wheelGraphics = new ImageGraphics("roue.png", 2*ballRadius, 2*ballRadius, new Vector(0.5f, 0.5f));
+	        wheelGraphics = new ImageGraphics("wheel.png", 2*ballRadius, 2*ballRadius, new Vector(0.5f, 0.5f));
 	        wheelGraphics.setParent(this);
 	        getOwner().addActor(this);
 		}
+	
+	public Entity getEntity() {
+		return super.getEntity();
+	}
 	
 	@Override
 	public void draw(Canvas canvas) {
@@ -73,6 +77,11 @@ public class Wheel extends GameEntity implements Actor{
 	
 	public void detach() {
 		constraint.destroy();
+	}
+	
+	public void destroy() {
+		getEntity().destroy();
+		getOwner().removeActor(this);
 	}
 	
 	/**
