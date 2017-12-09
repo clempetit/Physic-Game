@@ -9,6 +9,7 @@ import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.math.BasicContactListener;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Vector;
@@ -20,6 +21,7 @@ public class Finish extends GameEntity implements Actor{
 	private Polygon polygon;
 	private final float FinishHeight = 2.0f;
 	private final float FinishWidth = 2.0f;
+	private BasicContactListener contactListener;
 	
 	public Finish(ActorGame game, Vector position) {
 		super(game, true);
@@ -35,6 +37,9 @@ public class Finish extends GameEntity implements Actor{
 		partBuilder.setShape(polygon);
 	    partBuilder.build();
 	        
+	    contactListener = new BasicContactListener();
+	    getEntity().addContactListener(contactListener);
+	    
 	    FinishGraphics = new ImageGraphics("flag.red.png", FinishWidth, FinishHeight);
 	    FinishGraphics.setParent(this);
         getOwner().addActor(this);
@@ -44,6 +49,15 @@ public class Finish extends GameEntity implements Actor{
 	@Override
 	public void draw(Canvas canvas) {
 		FinishGraphics.draw(canvas);
+	}
+	
+	public boolean levelFinished() {
+		int numberOfCollisions = contactListener.getEntities().size();
+		if (numberOfCollisions > 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
