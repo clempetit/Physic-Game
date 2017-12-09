@@ -1,3 +1,7 @@
+/*
+ *	Author:      Clément Petit 
+ *	Date:        15.10.2015
+ */
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
