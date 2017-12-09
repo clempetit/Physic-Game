@@ -1,10 +1,10 @@
-/*
- *	Author:      Yanis Berkani
- *	Date:        2 déc. 2017
+*	Author:      Clément Petit
+ *	Date:        15.10.2015
  */
 
 package ch.epfl.cs107.play.game.actor;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import ch.epfl.cs107.play.game.Game;
@@ -72,6 +72,16 @@ public abstract class ActorGame implements Game {
 	
 	public WheelConstraintBuilder createWheelConstraintBuilder() {
 		return world.createWheelConstraintBuilder();
+	}
+	
+	public void showText(String text, float size) {
+		if (size < 0) {size = -size;}
+		if (size == 0.0f) {size = 0.01f;}
+		TextGraphics message = new TextGraphics("", size, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
+ 	 	message.setText(text);
+ 	 	message.setParent(getCanvas());
+ 	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+ 	 	message.draw(getCanvas());
 	}
 	
 	@Override
