@@ -56,6 +56,7 @@ public class BikeGame extends ActorGame{
         crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         bike = new Bike(this, false, new Vector(4.0f, 5.0f));
+	finish = new Finish(this, new Vector(1.0f, 0.0f));
         
         this.setViewCandidates(bike);
         return true;
