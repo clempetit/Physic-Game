@@ -45,24 +45,14 @@ public class Finish extends GameEntity implements Actor{
 	    FinishGraphics = new ImageGraphics("flag.red.png", FinishWidth, FinishHeight);
 	    FinishGraphics.setParent(this);
         getOwner().addActor(this);
-		
-	}
+        }
 	
+	public BasicContactListener getListener() {
+		return contactListener;
+	}
 	@Override
 	public void draw(Canvas canvas) {
 		FinishGraphics.draw(canvas);
 	}
 	
-	public boolean levelFinished() {
-		int numberOfCollisions = contactListener.getEntities().size();
-		if (numberOfCollisions > 0){
-			finished = true;
-		} 
-		if (finished) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 }
