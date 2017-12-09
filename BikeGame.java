@@ -16,6 +16,7 @@ import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
+import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 
