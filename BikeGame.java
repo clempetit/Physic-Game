@@ -27,6 +27,7 @@ public class BikeGame extends ActorGame{
 	private Crate crate3;
 	private Bike bike;
 	private Finish finish;
+	private TextGraphics message;
 	
 	@Override
     public boolean begin(Window window, FileSystem fileSystem) {
