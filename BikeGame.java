@@ -26,7 +26,7 @@ public class BikeGame extends ActorGame{
 	private Crate crate2;
 	private Crate crate3;
 	private Bike bike;
-	
+	private Finish finish;
 	
 	@Override
     public boolean begin(Window window, FileSystem fileSystem) {
@@ -56,8 +56,7 @@ public class BikeGame extends ActorGame{
         crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         bike = new Bike(this, false, new Vector(4.0f, 5.0f));
-	finish = new Finish(this, new Vector(1.0f, 0.0f));
-        
+        finish = new Finish(this, new Vector(1.0f, 0.0f));
         this.setViewCandidates(bike);
         return true;
     }
@@ -65,6 +64,10 @@ public class BikeGame extends ActorGame{
     @Override
     public void update(float deltaTime) {
     	 	super.update(deltaTime);
+    	 	
+    	 	if(bike.getHit()) {
+    		       bike.destroy();
+    		       } 
     	 	
     	 	if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
     	 		bike.setOppositeDirection(bike.getDirection());
@@ -86,11 +89,11 @@ public class BikeGame extends ActorGame{
     	 	
 
     	 	if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    	 		bike.getBike().applyAngularForce(-40.0f);
+    	 		bike.getBike().applyAngularForce(-30.0f);
     	 	}
     	 	
     	 	if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    	 		bike.getBike().applyAngularForce(40.0f);
+    	 		bike.getBike().applyAngularForce(30.0f);
     	 	}
     	 	
     }
