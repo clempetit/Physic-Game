@@ -13,6 +13,8 @@ import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.general.Wheel;
 import ch.epfl.cs107.play.math.Circle;
+import ch.epfl.cs107.play.math.Contact;
+import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
@@ -35,6 +37,7 @@ public class Bike extends GameEntity implements Actor{
 	private ShapeGraphics kneeGraphics;
 	private ShapeGraphics leg1Graphics;
 	private ShapeGraphics leg2Graphics;
+	private boolean hit;
 	
 	
 	public Bike(ActorGame game, boolean fixed, Vector position) {
@@ -48,7 +51,7 @@ public class Bike extends GameEntity implements Actor{
 				);
 		
 			partBuilder.setShape(polygon);
-			partBuilder.setGhost(true);
+			partBuilder.setGhost(false);
 	        partBuilder.build();
 	        
 	        leftWheel = new Wheel(getOwner(), false, position.add(-1.0f, 0.f),  0.5f);
@@ -62,8 +65,34 @@ public class Bike extends GameEntity implements Actor{
 	        leftWheel.relax();
 	        rightWheel.relax();
 	        
+	        ContactListener listener = new ContactListener() {
+				@Override
+				public void beginContact(Contact contact) {
+					if (contact.getOther().isGhost()) {
+						return ;
+					}
+					// si contact avec les roues
+					if (contact.getOther().getEntity().equals (leftWheel.getEntity())) {
+						return ;
+					}	
+				hit = true ;	
+				}
+				@Override
+				public void endContact(Contact contact) {}
+			};
+			this.getEntity().addContactListener(listener); 
 	}
 	
+	public boolean getHit() {
+		return hit ;
+	}
+	
+	public void destroy() {
+		getEntity().destroy();
+		rightWheel.detach();  //Ici, on aurait pu destroy.
+		getOwner().removeActor(this);
+	}
+
 	public Entity getBike() {
 		return getEntity();
 	}
