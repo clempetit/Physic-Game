@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
+import ch.epfl.cs107.play.game.actor.TextGraphics;
 import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.io.FileSystem;
