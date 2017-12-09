@@ -63,38 +63,46 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void update(float deltaTime) {
-    	 	super.update(deltaTime);
+    	 super.update(deltaTime);
     	 	
-    	 	if(bike.getHit()) {
+    	 if(bike.getHit()) {
     		       bike.destroy();
     		       } 
     	 	
-    	 	if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
+    	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
     	 		bike.setOppositeDirection(bike.getDirection());
     	 	}
     	 	
-    	 	if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
     	 		bike.getRightWheel().power(0.f);
     	 		bike.getLeftWheel().power(0.f);
     	 	}
     	 	
-    	 	if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
-    	 		if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
-    	 			bike.MoveRight();		
-    	 		}
-    	 		else {
-    	 			bike.MoveLeft();
-    	 		}
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
+    	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
+    	 		bike.MoveRight();		
     	 	}
+    	 	else {
+    	 		bike.MoveLeft();
+    	 	}
+    	 }
     	 	
 
-    	 	if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    	 		bike.getBike().applyAngularForce(-30.0f);
-    	 	}
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
+    	 	bike.getBike().applyAngularForce(-30.0f);
+    	 }
     	 	
-    	 	if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    	 		bike.getBike().applyAngularForce(30.0f);
-    	 	}
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
+    	 	bike.getBike().applyAngularForce(30.0f);
+    	 }
+	    
+	 if(finish.levelFinished()) {
+    	 	message = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
+    	 	message.setText("BRAVO");
+    	 	message.setParent(getCanvas());
+    	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+    	 	message.draw(getCanvas());
+    	 }
     	 	
     }
     
