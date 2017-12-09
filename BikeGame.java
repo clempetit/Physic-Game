@@ -30,6 +30,7 @@ public class BikeGame extends ActorGame{
 	private Finish finish;
 	private TextGraphics message;
 	private TextGraphics message1;
+	private TextGraphics message_fixBug ; 
 	private boolean finished;
 	
 	@Override
@@ -42,9 +43,9 @@ public class BikeGame extends ActorGame{
         /* Message vide du départ pour pallier au problème
          * de latence lors de l'arrivée du cycliste (sur mac)
          */
-        message1 = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
-        message1.setParent(getCanvas());
-        message1.draw(getCanvas());
+        message_fixBug = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
+        message_fixBug.setParent(getCanvas());
+        message_fixBug.draw(getCanvas());
         
         polyline = new Polyline(
 				-1000.0f, -1000.0f,
@@ -78,6 +79,11 @@ public class BikeGame extends ActorGame{
     	 	
     	 if(bike.getHit()) {
     		       bike.destroy();
+		       message1 = new TextGraphics("", 0.3f, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
+    	    	       message1.setText("PERDU !");
+    	    	       message1.setParent(getCanvas());
+    	    	       message1.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+    	      	       message1.draw(getCanvas());
     		       } 
     	 	
     	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
@@ -103,15 +109,20 @@ public class BikeGame extends ActorGame{
     	 		bike.getLeftWheel().power(0.f);
     	 	}
    	
+	 if (this.window.getKeyboard().get(KeyEvent.VK_R).isPressed()){
+    		 removeAllActors();
+    		 restart(this, deltaTime);
+    	 	}
+	    
     	 if (finish.getListener().hasContactWith(bike.getEntity())){
     	    finished = true;
     	 	}
     	 if (finished) {
-    		 message = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
-     	 	message.setText("BRAVO");
-     	 	message.setParent(getCanvas());
-     	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
-     	 	message.draw(getCanvas());
+    		message = new TextGraphics("", 0.3f, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
+    	 	message.setText("BRAVO !");
+    	 	message.setParent(getCanvas());
+    	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+    	 	message.draw(getCanvas());
      	 	bike.getRightWheel().power(0.f);
      	 	bike.getLeftWheel().power(0.f);
     	 }
