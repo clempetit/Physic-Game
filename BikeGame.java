@@ -59,7 +59,7 @@ public class BikeGame extends ActorGame{
         crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         bike = new Bike(this, false, new Vector(4.0f, 5.0f));
-        finish = new Finish(this, new Vector(1.0f, 0.0f));
+        finish = new Finish(this, new Vector(10.0f, 2.0f));
         this.setViewCandidates(bike);
         return true;
     }
@@ -76,19 +76,26 @@ public class BikeGame extends ActorGame{
     	 		bike.setOppositeDirection(bike.getDirection());
     	 	}
     	 	
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
+     	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
+     	 		bike.MoveRight();		
+     	 	}
+     	 	else {
+     	 		bike.MoveLeft();
+     	 	}
+     	 }
+    	 else {
+    		 bike.getLeftWheel().relax();
+    		 bike.getRightWheel().relax();
+    	 }
+    	 
+    	 
     	 if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
     	 		bike.getRightWheel().power(0.f);
     	 		bike.getLeftWheel().power(0.f);
     	 	}
-    	 	
-    	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
-    	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
-    	 		bike.MoveRight();		
-    	 	}
-    	 	else {
-    	 		bike.MoveLeft();
-    	 	}
-    	 }
+    	 
+    	
     	 	
 
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
