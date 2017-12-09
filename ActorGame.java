@@ -42,6 +42,14 @@ public abstract class ActorGame implements Game {
 		actors.remove(actor);
 	}
 	
+	public void removeAllActors() {
+		actors.removeAll(actors);
+	}
+	
+	public void restart(ActorGame game, float deltaTime) {
+		game.begin(window, fileSystem);
+	}
+	
 	public void addActor(Actor actor) {
 		actors.add(actor);
 	}
