@@ -24,7 +24,7 @@ public class Finish extends GameEntity implements Actor{
 	private BasicContactListener contactListener;
 	
 	public Finish(ActorGame game, Vector position) {
-		super(game, true);
+		super(game, true, position);
 		partBuilder = getEntity().createPartBuilder();
 			
 		polygon = new Polygon(
