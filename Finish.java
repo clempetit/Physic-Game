@@ -54,6 +54,9 @@ public class Finish extends GameEntity implements Actor{
 	public boolean levelFinished() {
 		int numberOfCollisions = contactListener.getEntities().size();
 		if (numberOfCollisions > 0){
+			finished = true;
+		} 
+		if (finished) {
 			return true;
 		} else {
 			return false;
