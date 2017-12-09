@@ -22,6 +22,7 @@ public class Finish extends GameEntity implements Actor{
 	private final float FinishHeight = 2.0f;
 	private final float FinishWidth = 2.0f;
 	private BasicContactListener contactListener;
+	private boolean finished = false;
 	
 	public Finish(ActorGame game, Vector position) {
 		super(game, true, position);
@@ -35,6 +36,7 @@ public class Finish extends GameEntity implements Actor{
 				);
 		
 		partBuilder.setShape(polygon);
+		partBuilder.setGhost(true);
 	    partBuilder.build();
 	        
 	    contactListener = new BasicContactListener();
