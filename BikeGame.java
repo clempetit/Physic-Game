@@ -127,16 +127,13 @@ public class BikeGame extends ActorGame{
     		 }
     	 }
 	    
-	 if(finish.levelFinished()) {
-    	 	message = new TextGraphics("", 0.3f, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
-    	 	message.setText("BRAVO !");
+	 if (finish.getListener().hasContactWith(bike.getEntity())){
+    	 	message = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
+    	 	message.setText("BRAVO");
     	 	message.setParent(getCanvas());
     	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
     	 	message.draw(getCanvas());
-    	 	bike.getRightWheel().power(0.f);
-	 	bike.getLeftWheel().power(0.f);
-	 	
-    	 }
+    	 	}
     	 	
     }
     
