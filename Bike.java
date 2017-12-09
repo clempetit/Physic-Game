@@ -1,8 +1,3 @@
-/*
- *	Author:      Yanis Berkani
- *	Date:        7 déc. 2017
- */
-
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -12,6 +7,7 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.general.Wheel;
+import ch.epfl.cs107.play.math.BasicContactListener;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Contact;
 import ch.epfl.cs107.play.math.ContactListener;
@@ -52,6 +48,7 @@ public class Bike extends GameEntity implements Actor{
 		
 			partBuilder.setShape(polygon);
 			partBuilder.setGhost(false);
+			partBuilder.setCollisionSignature(1);
 	        partBuilder.build();
 	        
 	        leftWheel = new Wheel(getOwner(), false, position.add(-1.0f, 0.f),  0.5f);
@@ -80,7 +77,11 @@ public class Bike extends GameEntity implements Actor{
 				@Override
 				public void endContact(Contact contact) {}
 			};
-			this.getEntity().addContactListener(listener); 
+			this.getEntity().addContactListener(listener);
+	}
+	
+	public Entity getEntity() {
+		return super.getEntity();
 	}
 	
 	public boolean getHit() {
@@ -89,7 +90,8 @@ public class Bike extends GameEntity implements Actor{
 	
 	public void destroy() {
 		getEntity().destroy();
-		rightWheel.detach();  //Ici, on aurait pu destroy.
+		rightWheel.destroy();
+		leftWheel.destroy(); //Ici, on aurait pu detach.
 		getOwner().removeActor(this);
 	}
 
