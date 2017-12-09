@@ -109,19 +109,11 @@ public class Bike extends GameEntity implements Actor{
 		if(rightWheel.getSpeed() < MAX_WHEEL_SPEED) {
 			rightWheel.power(MAX_WHEEL_SPEED);
 		}
-		else {
-			leftWheel.relax();
-			rightWheel.relax();
-		}
 	}
 	
 	public void MoveRight() {
 		if(leftWheel.getSpeed() > -MAX_WHEEL_SPEED) {
 			leftWheel.power(-MAX_WHEEL_SPEED);
-		}
-		else {
-			leftWheel.relax();
-			rightWheel.relax();
 		}
 	}
 	
