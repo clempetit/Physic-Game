@@ -2,8 +2,6 @@
  *	Author:      Yanis Berkani
  *	Date:        7 déc. 2017
  */
-
-
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -30,6 +28,7 @@ public class BikeGame extends ActorGame{
 	private Bike bike;
 	private Finish finish;
 	private TextGraphics message;
+	private TextGraphics message1 ; 
 	
 	@Override
     public boolean begin(Window window, FileSystem fileSystem) {
@@ -38,7 +37,14 @@ public class BikeGame extends ActorGame{
         final float crateWidth = 1.0f;
         final float crateHeight = 1.0f;
         
-		polyline = new Polyline(
+        /* Message vide du départ pour pallier au problème
+         * de latence lors de l'arrivée du cycliste (sur mac)
+         */
+        message1 = new TextGraphics("", 0.3f, Color.RED, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
+        message1.setParent(getCanvas());
+        message1.draw(getCanvas());
+        
+        polyline = new Polyline(
 				-1000.0f, -1000.0f,
 				-1000.0f, 0.0f, 0.0f, 0.0f,
 				3.0f, 1.0f,
@@ -59,7 +65,7 @@ public class BikeGame extends ActorGame{
         crate2 = new Crate(this, false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate3 = new Crate(this, false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         bike = new Bike(this, false, new Vector(4.0f, 5.0f));
-        finish = new Finish(this, new Vector(10.0f, 2.0f));
+        finish = new Finish(this, new Vector(10.0f, 0.0f));
         this.setViewCandidates(bike);
         return true;
     }
@@ -87,13 +93,14 @@ public class BikeGame extends ActorGame{
     	 else {
     		 bike.getLeftWheel().relax();
     		 bike.getRightWheel().relax();
-    	 }
+    	 } 
     	 
     	 
     	 if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
     	 		bike.getRightWheel().power(0.f);
     	 		bike.getLeftWheel().power(0.f);
     	 	}
+   
     	 
     	
     	 	
