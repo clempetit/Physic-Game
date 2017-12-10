@@ -1,7 +1,8 @@
 /*
- *	Author:      Clément Petit 
+ *	Author:      Clément Petit
  *	Date:        15.10.2015
  */
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -39,6 +40,7 @@ public class Bike extends GameEntity implements Actor{
 	private ShapeGraphics leg2Graphics;
 	private boolean hit;
 	private Vector handLocation;
+	private Vector kneeLocation;
 	
 	
 	public Bike(ActorGame game, boolean fixed, Vector position) {
@@ -68,6 +70,7 @@ public class Bike extends GameEntity implements Actor{
 	        rightWheel.relax();
 	        
 			handLocation = new Vector(0.55f, 0.95f);
+			kneeLocation = new Vector(0.0f,0.65f);
 	        
 	        ContactListener listener = new ContactListener() {
 				@Override
@@ -173,8 +176,15 @@ public class Bike extends GameEntity implements Actor{
 	}
 	
 	private Vector getKneeLocation() {
-		return new Vector(0.0f,0.65f);
+		return kneeLocation;
 	}
+	public void setKneeLocation(Vector location) {
+		kneeLocation = location;
+	}
+	public void setKneeLocationDown() {
+		kneeLocation = new Vector(0.0f,0.65f);
+	}
+	
 	private Vector getFoot1Location() {
 		if(toRight == true) {
 			return new Vector(-0.25f, 0.1f);
@@ -232,6 +242,5 @@ public class Bike extends GameEntity implements Actor{
 				leg2Graphics.draw(canvas);
 				
 	}
-	
 	
 }
