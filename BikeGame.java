@@ -3,6 +3,7 @@
  *	Date:        15.10.2015
  */
 
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -15,6 +16,7 @@ import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
+import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 
@@ -78,14 +80,18 @@ public class BikeGame extends ActorGame{
     	 	
     	 if(bike.getHit()) {
     		       bike.destroy();
-		       showText("PERDU !", 0.3f);
-    	 }
+		       message1 = new TextGraphics("", 0.3f, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
+    	    	       message1.setText("PERDU !");
+    	    	       message1.setParent(getCanvas());
+    	    	       message1.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+    	      	       message1.draw(getCanvas());
+    		       } 
     	 	
     	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
     		 if(!(finished)) {
     	 		bike.setOppositeDirection(bike.getDirection());
     		 }
-    	 }
+    	 	}
     	 	
     	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
      	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
@@ -94,22 +100,37 @@ public class BikeGame extends ActorGame{
      	 	else {
      	 		bike.MoveLeft();
      	 	}
-    	 }
+     	 }
     	 else {
     		 bike.getLeftWheel().relax();
     		 bike.getRightWheel().relax();
     	 } 
     	 
-    	 if (this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
+    	 
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
     	 		bike.getRightWheel().power(0.f);
     	 		bike.getLeftWheel().power(0.f);
-    	 }
+    	 	}
    	
 	 if (this.window.getKeyboard().get(KeyEvent.VK_R).isPressed()){
     		 removeAllActors();
     		 restart(this, deltaTime);
-	 }
+    	 	}
 	    
+    	 if (finish.getListener().hasContactWith(bike.getEntity())){
+    	    finished = true;
+    	 	}
+    	 if (finished) {
+    		finish.destroy();
+    		message = new TextGraphics("", 0.3f, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
+    	 	message.setText("BRAVO !");
+    	 	message.setParent(getCanvas());
+    	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+    	 	message.draw(getCanvas());
+     	 	bike.getRightWheel().power(0.f);
+     	 	bike.getLeftWheel().power(0.f);
+    	 }
+    	 
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		 if(!(finished)) {
      	 		bike.getBike().applyAngularForce(-30.0f);
@@ -121,21 +142,13 @@ public class BikeGame extends ActorGame{
       	 		bike.getBike().applyAngularForce(30.0f);
       	 	}
     	 }
-    	 
-    	 if (finish.getListener().hasContactWith(bike.getEntity())){
-     	    finished = true;
-     	   finish.destroy();
-     }
-    	 
-    	 if (finished) {
-     		showText("BRAVO !", 0.3f);
-      	 	bike.getRightWheel().power(0.f);
-      	 	bike.getLeftWheel().power(0.f);
-    	 }
     }
     
+
     @Override
     public void end() {
     }
     
+    
+
 }
