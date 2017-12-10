@@ -124,6 +124,7 @@ public class BikeGame extends ActorGame{
     	 }
     	 
     	 if (finish.getListener().hasContactWith(bike.getEntity())){
+    		 bike.setFinishedHandLocation();
      	    finished = true;
      	   finish.destroy();
      }
