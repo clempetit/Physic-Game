@@ -38,6 +38,7 @@ public class Bike extends GameEntity implements Actor{
 	private ShapeGraphics leg1Graphics;
 	private ShapeGraphics leg2Graphics;
 	private boolean hit;
+	private Vector handLocation;
 	
 	
 	public Bike(ActorGame game, boolean fixed, Vector position) {
@@ -65,6 +66,8 @@ public class Bike extends GameEntity implements Actor{
 	        
 	        leftWheel.relax();
 	        rightWheel.relax();
+	        
+			handLocation = new Vector(0.55f, 0.95f);
 	        
 	        ContactListener listener = new ContactListener() {
 				@Override
@@ -149,11 +152,15 @@ public class Bike extends GameEntity implements Actor{
 	
 	private Vector getHandLocation() {
 		if(toRight == true) {
-			return new Vector(0.55f, 0.95f);
+			return handLocation;
 		}
 		else {
-			return new Vector(-0.55f, 0.95f);
+			return new Vector(-handLocation.getX(), handLocation.getY());
 		}
+	}
+	
+	public void setFinishedHandLocation() {
+		handLocation = new Vector(0.1f, 2.4f);
 	}
 	
 	private Vector getBackLocation() {
@@ -225,5 +232,6 @@ public class Bike extends GameEntity implements Actor{
 				leg2Graphics.draw(canvas);
 				
 	}
+	
 	
 }
