@@ -226,7 +226,4 @@ public class Bike extends GameEntity implements Actor{
 				
 	}
 	
-	
-	
-
 }
