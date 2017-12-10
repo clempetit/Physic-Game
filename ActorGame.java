@@ -1,4 +1,5 @@
-*	Author:      Clément Petit
+/*
+ *	Author:      Clément Petit
  *	Date:        15.10.2015
  */
 
