@@ -22,10 +22,11 @@ public class Finish extends GameEntity implements Actor{
 	private final float FinishHeight = 2.0f;
 	private final float FinishWidth = 2.0f;
 	private BasicContactListener contactListener;
-	private boolean finished = false;
+	private boolean finished;
 	
 	public Finish(ActorGame game, Vector position) {
 		super(game, true, position);
+		finished = false;
 		partBuilder = getEntity().createPartBuilder();
 			
 		polygon = new Polygon(
@@ -53,6 +54,11 @@ public class Finish extends GameEntity implements Actor{
 	@Override
 	public void draw(Canvas canvas) {
 		FinishGraphics.draw(canvas);
+	}
+	@Override
+	public void destroy() {
+		getEntity().destroy();
+		getOwner().removeActor(this);
 	}
 	
 }
