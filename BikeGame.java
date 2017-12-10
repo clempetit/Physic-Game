@@ -15,7 +15,6 @@ import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 
@@ -80,13 +79,13 @@ public class BikeGame extends ActorGame{
     	 if(bike.getHit()) {
     		       bike.destroy();
 		       showText("PERDU !", 0.3f);
-    		       } 
+    	 }
     	 	
     	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
     		 if(!(finished)) {
     	 		bike.setOppositeDirection(bike.getDirection());
     		 }
-    	 	}
+    	 }
     	 	
     	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
      	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
@@ -95,27 +94,22 @@ public class BikeGame extends ActorGame{
      	 	else {
      	 		bike.MoveLeft();
      	 	}
-     	 }
+    	 }
     	 else {
     		 bike.getLeftWheel().relax();
     		 bike.getRightWheel().relax();
     	 } 
     	 
-    	 
-    	 if(this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
+    	 if (this.window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
     	 		bike.getRightWheel().power(0.f);
     	 		bike.getLeftWheel().power(0.f);
-    	 	}
+    	 }
    	
 	 if (this.window.getKeyboard().get(KeyEvent.VK_R).isPressed()){
     		 removeAllActors();
     		 restart(this, deltaTime);
-    	 	}
+	 }
 	    
-    	 if (finish.getListener().hasContactWith(bike.getEntity())){
-    	    finished = true;
-    	 	}
-    	 
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		 if(!(finished)) {
      	 		bike.getBike().applyAngularForce(-30.0f);
@@ -128,19 +122,20 @@ public class BikeGame extends ActorGame{
       	 	}
     	 }
     	 
+    	 if (finish.getListener().hasContactWith(bike.getEntity())){
+     	    finished = true;
+     	   finish.destroy();
+     }
+    	 
     	 if (finished) {
-     		finish.destroy();
      		showText("BRAVO !", 0.3f);
       	 	bike.getRightWheel().power(0.f);
       	 	bike.getLeftWheel().power(0.f);
-     	 }
+    	 }
     }
     
-    
-
     @Override
     public void end() {
     }
-    
     
 }
