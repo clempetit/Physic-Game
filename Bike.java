@@ -90,10 +90,6 @@ public class Bike extends GameEntity implements Actor{
 			this.getEntity().addContactListener(listener);
 	}
 	
-	public Entity getEntity() {
-		return super.getEntity();
-	}
-	
 	public boolean getHit() {
 		return hit ;
 	}
@@ -105,8 +101,8 @@ public class Bike extends GameEntity implements Actor{
 		getOwner().removeActor(this);
 	}
 
-	public Entity getBike() {
-		return getEntity();
+	public Entity getEntity() {
+		return super.getEntity();
 	}
 	
 	public Wheel getLeftWheel() {
