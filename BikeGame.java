@@ -3,7 +3,6 @@
  *	Date:        15.10.2015
  */
 
-
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -113,13 +112,13 @@ public class BikeGame extends ActorGame{
 	    
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		 if(!(finished)) {
-     	 		bike.getBike().applyAngularForce(-30.0f);
+     	 		bike.getEntity().applyAngularForce(-30.0f);
      	 	}
     	 }
     	 	
     	 if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
     		 if(!(finished)) {
-      	 		bike.getBike().applyAngularForce(30.0f);
+      	 		bike.getEntity().applyAngularForce(30.0f);
       	 	}
     	 }
     	 
