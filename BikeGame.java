@@ -78,7 +78,7 @@ public class BikeGame extends ActorGame{
     public void update(float deltaTime) {
     	super.update(deltaTime);
     	 	
-    	 if(bike.getHit()) {
+    	 if(bike.getHit() && !(finished)) {
     		       bike.destroy();
 		       message1 = new TextGraphics("", 0.3f, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
     	    	       message1.setText("PERDU !");
