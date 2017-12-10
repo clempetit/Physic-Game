@@ -1,6 +1,5 @@
-/*
- *	Author:      Yanis Berkani
- *	Date:        6 déc. 2017
+*	Author:      Clément Petit
+ *	Date:        15.10.2015
  */
 
 package ch.epfl.cs107.play.game.actor;
@@ -41,7 +40,7 @@ public abstract class GameEntity {
 			entityBuilder.setFixed(fixed);
 			entity = entityBuilder.build();
 		} catch (NullPointerException e) {
-			System.out.println("Paramètre indispensable valant null");
+			System.out.println("Paramètre(s) indispensable(s) valant null");
 		}
 	}
 	
@@ -66,16 +65,11 @@ public abstract class GameEntity {
 			return false;
 		}
 	}
-	
 	public Transform getTransform() {
-		// TODO Auto-generated method stub
 		return getEntity().getTransform();
 	}
-
 	public Vector getVelocity() {
-		// TODO Auto-generated method stub
 		return getEntity().getVelocity();
 	}
 	
-
 }
