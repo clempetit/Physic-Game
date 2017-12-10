@@ -93,5 +93,9 @@ public class Wheel extends GameEntity implements Actor{
 		float diff = getEntity().getAngularVelocity() - getEntity().getVelocity().getLength();
 		return diff;
 	}
+	
+	public float getAngularPosition() {
+		return getEntity().getAngularPosition();
+	}
 
 }
