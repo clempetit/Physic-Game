@@ -3,7 +3,7 @@
  *	Date:        7 déc. 2017
  */
 
-package ch.epfl.cs107.play.game.actor.general; //GetOwner.createWheelConstraint...
+package ch.epfl.cs107.play.game.actor.general;
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
@@ -32,13 +32,15 @@ public class Wheel extends GameEntity implements Actor{
 			circle = new Circle(Math.abs(ballRadius));
 			partBuilder.setFriction(0.5f);
 			partBuilder.setShape(circle);
+			partBuilder.setCollisionSignature(1);
 	        partBuilder.build();
 	        
-	        wheelGraphics = new ImageGraphics("wheel.png", 2*ballRadius, 2*ballRadius, new Vector(0.5f, 0.5f));
+	        wheelGraphics = new ImageGraphics("wheel2.png", 2*ballRadius, 2*ballRadius, new Vector(0.5f, 0.5f));
 	        wheelGraphics.setParent(this);
 	        getOwner().addActor(this);
 		}
 	
+	@Override
 	public Entity getEntity() {
 		return super.getEntity();
 	}
@@ -79,6 +81,7 @@ public class Wheel extends GameEntity implements Actor{
 		constraint.destroy();
 	}
 	
+	@Override
 	public void destroy() {
 		getEntity().destroy();
 		getOwner().removeActor(this);
