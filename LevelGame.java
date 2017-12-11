@@ -2,6 +2,7 @@
  *	Author:      Clément Petit
  *	Date:        15.10.2015
  */
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;  
@@ -30,7 +31,8 @@ public class LevelGame extends ActorGame implements GameWithLevels{
 		return Arrays.asList(
 				new Level1(this),
 				new Level2(this),
-				new Level3(this)
+				new Level3(this),
+				new Level4(this)
 				);
 	}
 	@Override
