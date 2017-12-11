@@ -26,6 +26,8 @@ public class LevelGame extends ActorGame implements GameWithLevels{
 	private boolean finished;
 	private Level level;
 	private int progression = 0;
+	private float time = -3.0f;
+	private float transparency =1.f;
 	
 	protected List<Level> createLevelList() {
 		return Arrays.asList(
