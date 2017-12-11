@@ -28,8 +28,6 @@ public class BikeGame extends ActorGame{
 	private Crate crate3;
 	private Bike bike;
 	private Finish finish;
-	private TextGraphics message;
-	private TextGraphics message1;
 	private TextGraphics message_fixBug ; 
 	private boolean finished;
 	
@@ -109,7 +107,7 @@ public class BikeGame extends ActorGame{
    	
 	 if (this.window.getKeyboard().get(KeyEvent.VK_R).isPressed()){
     		 removeAllActors();
-    		 restart(this, deltaTime);
+    		 restart(this);
 	 }
 	    
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
