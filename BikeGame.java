@@ -4,7 +4,6 @@
  */
 
 
-
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -123,7 +122,7 @@ public class BikeGame extends ActorGame{
       	 	}
     	 }
     	 
-    	 if (finish.getListener().hasContactWith(bike.getBike()) || finish.getListener().hasContactWith(bike.getRightWheelEntity()) || finish.getListener().hasContactWith(bike.getLeftWheelEntity()) ){
+    	 if (finish.getListener().hasContactWith(bike.getBike()) || finish.getListener().hasContactWith(bike.getRightWheel().getEntity()) || finish.getListener().hasContactWith(bike.getLeftWheel().getEntity()) ){
     		 bike.setFinishedHandLocation();
      	 finished = true;
      	 finish.destroy();
