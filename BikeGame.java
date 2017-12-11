@@ -3,6 +3,7 @@
  *	Date:        15.10.2015
  */
 
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -87,9 +88,10 @@ public class BikeGame extends ActorGame{
     		 }
     	 }
     	 	
-    	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
+    	 if(this.window.getKeyboard().get(KeyEvent.VK_UP).isDown() && !(finished)) {
      	 	if(bike.getDirection()) {     // Le cycliste avance dans différentes directions selon son orientation.
-     	 		bike.MoveRight();		
+     	 		bike.MoveRight();
+     	 		
      	 	}
      	 	else {
      	 		bike.MoveLeft();
@@ -112,13 +114,13 @@ public class BikeGame extends ActorGame{
 	    
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		 if(!(finished)) {
-     	 		bike.getEntity().applyAngularForce(-30.0f);
+     	 		bike.getBike().applyAngularForce(-30.0f);
      	 	}
     	 }
     	 	
     	 if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
     		 if(!(finished)) {
-      	 		bike.getEntity().applyAngularForce(30.0f);
+      	 		bike.getBike().applyAngularForce(30.0f);
       	 	}
     	 }
     	 
@@ -133,10 +135,30 @@ public class BikeGame extends ActorGame{
       	 	bike.getRightWheel().power(0.f);
       	 	bike.getLeftWheel().power(0.f);
     	 }
+    	 
+    	 
+    	 if(bike.getDirection()) {
+    		 bike.setFoot1Location(new Vector((float)Math.cos(-(bike.getLeftWheel().getAngularPosition()/2))*0.25f, (float)(-(Math.sin(-(bike.getLeftWheel().getAngularPosition()/2))))*0.25f + 0.1f));
+    		 bike.setFoot2Location(new Vector((float)(-(Math.cos(-(bike.getLeftWheel().getAngularPosition()/2))))*0.25f, (float)Math.sin(-(bike.getLeftWheel().getAngularPosition()/2))*0.25f +0.1f));
+		
+    		 bike.setKnee1Location(new Vector((float)Math.sin(bike.getLeftWheel().getAngularPosition()/2)*0.2f, (float)Math.sin(bike.getLeftWheel().getAngularPosition()/2)*0.2f + 0.65f));
+    		 bike.setKnee2Location(new Vector((float)(-(Math.sin(bike.getLeftWheel().getAngularPosition()/2)))*0.2f, (float)(-(Math.sin(bike.getLeftWheel().getAngularPosition()/2)))*0.2f +0.65f)); 
+    	 
+    	 }
+    	 else {	
+    		 bike.setFoot1Location(new Vector((float)Math.cos((bike.getRightWheel().getAngularPosition()/2))*0.25f, (float)(-(Math.sin((bike.getRightWheel().getAngularPosition()/2))))*0.25f +0.1f));
+    		 bike.setFoot2Location(new Vector((float)(-(Math.cos((bike.getRightWheel().getAngularPosition()/2))))*0.25f, (float)Math.sin((bike.getRightWheel().getAngularPosition()/2))*0.25f +0.1f));
+
+    		 bike.setKnee1Location(new Vector((float)(-(Math.sin(bike.getRightWheel().getAngularPosition()/2)))*0.2f, (float)(-(Math.sin(bike.getRightWheel().getAngularPosition()/2)))*0.2f + 0.65f));
+    		 bike.setKnee2Location(new Vector((float)Math.sin(bike.getRightWheel().getAngularPosition()/2)*0.2f, (float)Math.sin(bike.getRightWheel().getAngularPosition()/2)*0.2f +0.65f)); 
+    	 }
     }
+    
+    
     
     @Override
     public void end() {
     }
     
 }
+
