@@ -105,7 +105,9 @@ public class LevelGame extends ActorGame implements GameWithLevels{
       	 	}
     	 }
     	 
-    	 if (level.getFinish().getListener().hasContactWith(level.getBike().getBikeEntity())){
+    	 if (level.getFinish().getListener().hasContactWith(level.getBike().getBikeEntity())
+    			 || level.getFinish().getListener().hasContactWith(level.getBike().getRightWheel().getEntity())
+    			 || level.getFinish().getListener().hasContactWith(level.getBike().getLeftWheel().getEntity()) ){
     		 if (progression == createLevelList().size() - 1) {
     			 level.getBike().setFinishedHandLocation();
     			 finished = true;
