@@ -94,6 +94,12 @@ public abstract class ActorGame implements Game {
 	    showText(" AGAIN ", 0.08f, 0.55f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
 	}
 	
+	public void transitionText() {
+		showText(" NEXT ", 0.3f, -0.55f,-0.6f, Color.BLUE, Color.WHITE, true, false);
+		showText(" LEVEL ! ", 0.3f, 0.45f,-0.6f, Color.BLUE, Color.WHITE, true, false);
+	}
+	
+	
 	public void defeatText() {
 		 showText("WASTED !", 0.3f, -0.05f,-0.6f, Color.RED, Color.BLACK, true, false);
 		 showText("PRESS ", 0.08f, -0.48f, -1.05f, Color.RED, Color.BLACK, false, false);
