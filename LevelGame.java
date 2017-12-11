@@ -57,7 +57,7 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     		 	
     	 if(level.getBike().getHit() && !(finished)) {
     		 level.getBike().destroy();
-		       showText("PERDU !", 0.3f);
+		       defeatText();
     	 }
     	 	
     	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
@@ -95,17 +95,17 @@ public class LevelGame extends ActorGame implements GameWithLevels{
 	    
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		 if(!(finished)) {
-    			 level.getBike().getEntity().applyAngularForce(-30.0f);
+    			 level.getBike().getBikeEntity().applyAngularForce(-30.0f);
      	 	}
     	 }
     	 	
     	 if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
     		 if(!(finished)) {
-    			 level.getBike().getEntity().applyAngularForce(30.0f);
+    			 level.getBike().getBikeEntity().applyAngularForce(30.0f);
       	 	}
     	 }
     	 
-    	 if (level.getFinish().getListener().hasContactWith(level.getBike().getEntity())){
+    	 if (level.getFinish().getListener().hasContactWith(level.getBike().getBikeEntity())){
     		 if (progression == createLevelList().size() - 1) {
     			 level.getBike().setFinishedHandLocation();
     			 finished = true;
@@ -116,7 +116,7 @@ public class LevelGame extends ActorGame implements GameWithLevels{
      }
     	 
     	 if (finished) {
-     		showText("BRAVO !", 0.3f);
+     		victoryText();
       	 	level.getBike().getRightWheel().power(0.f);
       	 	level.getBike().getLeftWheel().power(0.f);
     	 }
