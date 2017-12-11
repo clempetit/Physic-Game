@@ -121,9 +121,9 @@ public class BikeGame extends ActorGame{
       	 	}
     	 }
     	 
-    	 if (finish.getListener().hasContactWith(bike.getBikeEntity())
-    			 || finish.getListener().hasContactWith(bike.getRightWheel().getEntity())
-    			 || finish.getListener().hasContactWith(bike.getLeftWheel().getEntity()) ){
+    	 if (finish.hasContactWith(bike.getBikeEntity())
+    			 || finish.hasContactWith(bike.getRightWheel().getEntity())
+    			 || finish.hasContactWith(bike.getLeftWheel().getEntity()) ){
     		 bike.setFinishedHandLocation();
      	 finished = true;
      	 finish.destroy();
