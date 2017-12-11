@@ -103,14 +103,6 @@ public class Bike extends GameEntity implements Actor{
 		return getEntity();
 	}
 	
-	public Entity getLeftWheelEntity() {
-		return leftWheel.getEntity();
-	}
-	
-	public Entity getRightWheelEntity() {
-		return rightWheel.getEntity();
-	}
-	
 	public boolean getHit() {
 		return hit ;
 	}
