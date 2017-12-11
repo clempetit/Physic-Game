@@ -19,8 +19,7 @@ import ch.epfl.cs107.play.window.Window;
 
 public class LevelGame extends ActorGame implements GameWithLevels{
 	
-	private TextGraphics message;
-	private TextGraphics message1;
+	
 	private TextGraphics message_fixBug ; 
 	private boolean finished;
 	private Level level;
@@ -117,7 +116,7 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     			 nextLevel();
     		 }
      }
-	  if (time<=1.0f) {
+	  if (time<=1.0f && !(level.getBike().getHit())) {
  		 	transitionText(transparency);
  		 	time += deltaTime;
  		 	transparency -= deltaTime/2;
