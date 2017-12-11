@@ -75,14 +75,21 @@ public abstract class ActorGame implements Game {
 		return world.createWheelConstraintBuilder();
 	}
 	
-	public void showText(String text, float size) {
+	public void showText(String text, float size, float abs, float ord, Color fillColor, Color outlineColor, boolean bold, boolean italic) {
 		if (size < 0) {size = -size;}
 		if (size == 0.0f) {size = 0.01f;}
-		TextGraphics message = new TextGraphics("", size, Color.RED, Color.BLACK, 0.02f, true, false, new Vector(0.5f, 1.8f), 1.0f, 100.0f);
- 	 	message.setText(text);
+		TextGraphics message = new TextGraphics(text, size, fillColor, outlineColor, 0.02f, bold, italic, new Vector(0.5f, 0.5f), 1.0f, 100.0f);
  	 	message.setParent(getCanvas());
- 	 	message.setRelativeTransform(Transform.I.translated(0.0f, -1.0f));
+ 	 	message.setRelativeTransform(Transform.I.translated(abs, ord));
  	 	message.draw(getCanvas());
+	}
+	
+	public void victoryText() {
+		showText("BRAVO !", 0.3f, 0.0f,-0.6f, Color.RED, Color.BLACK, true, false);
+	}
+	
+	public void defeatText() {
+		 showText("PERDU !", 0.3f, 0.0f,-0.6f, Color.RED, Color.BLACK, true, false);
 	}
 	
 	@Override
