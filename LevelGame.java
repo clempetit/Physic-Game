@@ -116,6 +116,11 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     			 nextLevel();
     		 }
      }
+	  if (time<=1.0f) {
+ 		 	transitionText(transparency);
+ 		 	time += deltaTime;
+ 		 	transparency -= deltaTime/2;
+ 	 }
     	 
     	 if (finished) {
      		victoryText();
@@ -148,7 +153,10 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     removeAllActors();
     	progression++;
     	restart(this);
-    	
+    	if (progression>=1){
+    		time = -3.f;
+    		transparency = 1.f;
+    	}
     }
     
     @Override
