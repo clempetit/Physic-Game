@@ -3,6 +3,7 @@
  *	Date:        15.10.2015
  */
 
+
 package ch.epfl.cs107.play.game.actor;
 
 import java.awt.Color;
@@ -85,11 +86,21 @@ public abstract class ActorGame implements Game {
 	}
 	
 	public void victoryText() {
-		showText("BRAVO !", 0.3f, 0.0f,-0.6f, Color.RED, Color.BLACK, true, false);
+		showText(" YOU ", 0.3f, -0.55f,-0.6f, Color.YELLOW, Color.BLACK, true, false);
+		showText(" WON ! ", 0.3f, 0.45f,-0.6f, Color.YELLOW, Color.BLACK, true, false);
+		showText("PRESS ", 0.11f, -0.5f, -0.85f, Color.YELLOW, Color.BLACK, false, false);
+		showText(" R ", 0.11f, 0.f, -0.85f, Color.YELLOW, Color.BLACK, false, false);
+		showText(" TO ", 0.11f, 0.5f, -0.85f, Color.YELLOW, Color.BLACK, false, false);
+		showText(" PLAY ", 0.11f, -0.4f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
+	    showText(" AGAIN ", 0.11f, 0.4f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
 	}
 	
 	public void defeatText() {
-		 showText("PERDU !", 0.3f, 0.0f,-0.6f, Color.RED, Color.BLACK, true, false);
+		 showText("WASTED !", 0.3f, -0.05f,-0.6f, Color.RED, Color.BLACK, true, false);
+		 showText("PRESS ", 0.11f, -0.7f, -0.85f, Color.RED, Color.BLACK, false, false);
+		 showText(" R ", 0.11f, -0.25f, -0.85f, Color.RED, Color.BLACK, false, false);
+		 showText(" TO ", 0.11f, 0.0f, -0.85f, Color.RED, Color.BLACK, false, false);
+		 showText(" RESTART ", 0.11f, 0.6f, -0.85f, Color.RED, Color.BLACK, false, false);
 	}
 	
 	@Override
@@ -137,3 +148,4 @@ public abstract class ActorGame implements Game {
 	}
 
 }
+
