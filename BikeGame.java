@@ -112,17 +112,17 @@ public class BikeGame extends ActorGame{
 	    
     	 if(this.window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		 if(!(finished)) {
-     	 		bike.getBike().applyAngularForce(-30.0f);
+     	 		bike.getBikeEntity().applyAngularForce(-30.0f);
      	 	}
     	 }
     	 	
     	 if(this.window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
     		 if(!(finished)) {
-      	 		bike.getBike().applyAngularForce(30.0f);
+      	 		bike.getBikeEntity().applyAngularForce(30.0f);
       	 	}
     	 }
     	 
-    	 if (finish.getListener().hasContactWith(bike.getBike()) || finish.getListener().hasContactWith(bike.getRightWheel().getEntity()) || finish.getListener().hasContactWith(bike.getLeftWheel().getEntity()) ){
+    	 if (finish.getListener().hasContactWith(bike.getBikeEntity()) || finish.getListener().hasContactWith(bike.getRightWheel().getEntity()) || finish.getListener().hasContactWith(bike.getLeftWheel().getEntity()) ){
     		 bike.setFinishedHandLocation();
      	 finished = true;
      	 finish.destroy();
