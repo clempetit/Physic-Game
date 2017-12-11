@@ -87,11 +87,11 @@ public abstract class ActorGame implements Game {
 	public void victoryText() {
 		showText(" YOU ", 0.3f, -0.55f,-0.6f, Color.YELLOW, Color.BLACK, true, false);
 		showText(" WON ! ", 0.3f, 0.45f,-0.6f, Color.YELLOW, Color.BLACK, true, false);
-		showText("PRESS ", 0.08f, -0.62f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
-		showText(" R ", 0.08f, -0.32f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
-		showText(" TO ", 0.08f, -0.15f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
-		showText(" PLAY ", 0.08f, 0.18f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
-	    showText(" AGAIN ", 0.08f, 0.55f, -1.05f, Color.YELLOW, Color.BLACK, false, false);
+		showText("PRESS ", 0.08f, -0.62f, -1.3f, Color.YELLOW, Color.BLACK, false, false);
+		showText(" R ", 0.08f, -0.32f, -1.3f, Color.YELLOW, Color.BLACK, false, false);
+		showText(" TO ", 0.08f, -0.15f, -1.3f, Color.YELLOW, Color.BLACK, false, false);
+		showText(" PLAY ", 0.08f, 0.18f, -1.3f, Color.YELLOW, Color.BLACK, false, false);
+	    showText(" AGAIN ", 0.08f, 0.55f, -1.3f, Color.YELLOW, Color.BLACK, false, false);
 	}
 	
 	public void transitionText() {
@@ -102,10 +102,10 @@ public abstract class ActorGame implements Game {
 	
 	public void defeatText() {
 		 showText("WASTED !", 0.3f, -0.05f,-0.6f, Color.RED, Color.BLACK, true, false);
-		 showText("PRESS ", 0.08f, -0.48f, -1.05f, Color.RED, Color.BLACK, false, false);
-		 showText(" R ", 0.08f, -0.19f, -1.05f, Color.RED, Color.BLACK, false, false);
-		 showText(" TO ", 0.08f, -0.02f, -1.05f, Color.RED, Color.BLACK, false, false);
-		 showText(" RESTART ", 0.08f, 0.4f, -1.05f, Color.RED, Color.BLACK, false, false);
+		 showText("PRESS ", 0.08f, -0.48f, -1.3f, Color.RED, Color.BLACK, false, false);
+		 showText(" R ", 0.08f, -0.19f, -1.3f, Color.RED, Color.BLACK, false, false);
+		 showText(" TO ", 0.08f, -0.02f, -1.3f, Color.RED, Color.BLACK, false, false);
+		 showText(" RESTART ", 0.08f, 0.4f, -1.3f, Color.RED, Color.BLACK, false, false);
 	}
 	
 	@Override
