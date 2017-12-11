@@ -47,7 +47,7 @@ public abstract class ActorGame implements Game {
 		actors.removeAll(actors);
 	}
 	
-	public void restart(ActorGame game, float deltaTime) {
+	public void restart(ActorGame game) {
 		game.begin(window, fileSystem);
 	}
 	
