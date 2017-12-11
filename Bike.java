@@ -35,13 +35,18 @@ public class Bike extends GameEntity implements Actor{
 	private ShapeGraphics headGraphics;
 	private ShapeGraphics armGraphics;
 	private ShapeGraphics bottomGraphics;
-	private ShapeGraphics kneeGraphics;
+	private ShapeGraphics knee1Graphics;
+	private ShapeGraphics knee2Graphics;
 	private ShapeGraphics leg1Graphics;
 	private ShapeGraphics leg2Graphics;
 	private boolean hit;
-	private Vector handLocation;
-	private Vector kneeLocation;
 	
+	
+	private Vector handLocation;
+	private Vector knee1Location;
+	private Vector knee2Location;
+	private Vector foot1Location;
+	private Vector foot2Location;
 	
 	public Bike(ActorGame game, boolean fixed, Vector position) {
 		super(game, fixed, position);
@@ -70,8 +75,11 @@ public class Bike extends GameEntity implements Actor{
 	        rightWheel.relax();
 	        
 			handLocation = new Vector(0.55f, 0.95f);
-			kneeLocation = new Vector(0.0f,0.65f);
-	        
+			knee1Location = new Vector(0.0f,0.65f);
+			knee2Location = new Vector(0.0f,0.65f);
+			foot1Location = new Vector(-0.25f, 0.1f);
+			foot2Location = new Vector(0.25f, 0.1f);
+			
 	        ContactListener listener = new ContactListener() {
 				@Override
 				public void beginContact(Contact contact) {
@@ -90,6 +98,10 @@ public class Bike extends GameEntity implements Actor{
 			this.getEntity().addContactListener(listener);
 	}
 	
+	public Entity getEntity() {
+		return super.getEntity();
+	}
+	
 	public boolean getHit() {
 		return hit ;
 	}
@@ -101,8 +113,8 @@ public class Bike extends GameEntity implements Actor{
 		getOwner().removeActor(this);
 	}
 
-	public Entity getEntity() {
-		return super.getEntity();
+	public Entity getBike() {
+		return getEntity();
 	}
 	
 	public Wheel getLeftWheel() {
@@ -171,35 +183,62 @@ public class Bike extends GameEntity implements Actor{
 		}
 	}
 	
-	private Vector getKneeLocation() {
-		return kneeLocation;
+	private Vector getKnee1Location() {
+		if(toRight == true) {
+			return knee1Location;
+		}
+		else
+		{
+			return new Vector(-knee1Location.getX(),knee1Location.getY());
+		}
 	}
-	public void setKneeLocation(Vector location) {
-		kneeLocation = location;
+	
+	public void setKnee1Location(Vector location) {
+		knee1Location = location;
 	}
-	public void setKneeLocationDown() {
-		kneeLocation = new Vector(0.0f,0.65f);
+	
+	private Vector getKnee2Location() {
+		if(toRight == true) {
+			return knee2Location;
+		}
+		else
+		{
+			return new Vector(-knee2Location.getX(),knee2Location.getY());
+		}
 	}
+	
+	public void setKnee2Location(Vector location) {
+		knee2Location = location;
+	}
+	
+	
+	
 	
 	private Vector getFoot1Location() {
 		if(toRight == true) {
-			return new Vector(-0.25f, 0.1f);
+			return foot1Location;
 		}
 		else {
-			return new Vector(0.25f, 0.1f);
+			return new Vector(-foot1Location.getX(), foot1Location.getY());
 		}
+	}
+	
+	public void setFoot1Location(Vector location) {
+		foot1Location = location;
 	}
 	
 	private Vector getFoot2Location() {
 		if(toRight == true) {
-			return new Vector(0.25f, 0.1f);
+			return foot2Location;
 		}
 		else {
-			return new Vector(-0.25f, 0.1f);			
+			return new Vector(-foot2Location.getX(), foot2Location.getY());			
 		}
 	}
 	
-	
+	public void setFoot2Location(Vector location) {
+		foot2Location = location;
+	}
 	
 	
 	@Override
@@ -211,29 +250,34 @@ public class Bike extends GameEntity implements Actor{
 				
 				// Draw arm
 				Polyline arm = new Polyline(getShoulderLocation(),getHandLocation()) ;
-				armGraphics = new ShapeGraphics(arm, Color.BLACK, Color.BLACK, 0.1f);
+				armGraphics = new ShapeGraphics(arm, Color.RED, Color.RED, 0.1f);
 				armGraphics.setParent(this);
 				
 				Polyline bottom = new Polyline(getShoulderLocation(), getBackLocation());
 				bottomGraphics = new ShapeGraphics(bottom, Color.RED, Color.RED, 0.1f);
 				bottomGraphics.setParent(this);
 				
-				Polyline knee = new Polyline(getBackLocation(), getKneeLocation());
-				kneeGraphics = new ShapeGraphics(knee, Color.BLUE, Color.BLUE, 0.1f);
-				kneeGraphics.setParent(this);
+				Polyline knee1 = new Polyline(getBackLocation(), getKnee1Location());
+				knee1Graphics = new ShapeGraphics(knee1, Color.BLUE, Color.BLUE, 0.1f);
+				knee1Graphics.setParent(this);
 				
-				Polyline leg1 = new Polyline(getKneeLocation(), getFoot1Location());
+				Polyline knee2 = new Polyline(getBackLocation(), getKnee2Location());
+				knee2Graphics = new ShapeGraphics(knee2, Color.BLUE, Color.BLUE, 0.1f);
+				knee2Graphics.setParent(this);
+				
+				Polyline leg1 = new Polyline(getKnee1Location(), getFoot1Location());
 				leg1Graphics = new ShapeGraphics(leg1, Color.BLACK, Color.BLACK, 0.1f);
 				leg1Graphics.setParent(this);
 				
-				Polyline leg2 = new Polyline(getKneeLocation(), getFoot2Location());
+				Polyline leg2 = new Polyline(getKnee2Location(), getFoot2Location());
 				leg2Graphics = new ShapeGraphics(leg2, Color.BLACK, Color.BLACK, 0.1f);
 				leg2Graphics.setParent(this);
 				
 				headGraphics.draw(canvas);
 				armGraphics.draw(canvas);
 				bottomGraphics.draw(canvas);
-				kneeGraphics.draw(canvas);
+				knee1Graphics.draw(canvas);
+				knee2Graphics.draw(canvas);
 				leg1Graphics.draw(canvas);
 				leg2Graphics.draw(canvas);
 				
