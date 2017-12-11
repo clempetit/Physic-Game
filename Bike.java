@@ -112,10 +112,6 @@ public class Bike extends GameEntity implements Actor{
 		leftWheel.destroy(); //Ici, on aurait pu detach.
 		getOwner().removeActor(this);
 	}
-
-	public Entity getBike() {
-		return getEntity();
-	}
 	
 	public Wheel getLeftWheel() {
 		return leftWheel;
