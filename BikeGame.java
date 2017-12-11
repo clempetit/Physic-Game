@@ -77,7 +77,7 @@ public class BikeGame extends ActorGame{
     	 	
     	 if(bike.getHit() && !(finished)) {
     		       bike.destroy();
-		       showText("PERDU !", 0.3f);
+		       defeatText();
     	 }
     	 	
     	 if (this.window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()){
@@ -129,7 +129,7 @@ public class BikeGame extends ActorGame{
      }
     	 
     	 if (finished) {
-     		showText("BRAVO !", 0.3f);
+     		victoryText();
       	 	bike.getRightWheel().power(0.f);
       	 	bike.getLeftWheel().power(0.f);
     	 }
