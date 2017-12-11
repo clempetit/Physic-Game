@@ -3,6 +3,7 @@
  *	Date:        15.10.2015
  */
 
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -98,8 +99,16 @@ public class Bike extends GameEntity implements Actor{
 			this.getEntity().addContactListener(listener);
 	}
 	
-	public Entity getEntity() {
-		return super.getEntity();
+	public Entity getBike() {
+		return getEntity();
+	}
+	
+	public Entity getLeftWheelEntity() {
+		return leftWheel.getEntity();
+	}
+	
+	public Entity getRightWheelEntity() {
+		return rightWheel.getEntity();
 	}
 	
 	public boolean getHit() {
