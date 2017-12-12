@@ -26,6 +26,10 @@ public class Bascule extends GameEntity implements Actor{
     
     public Bascule(ActorGame game, Vector position, float width, float length) {
 		super(game, true, position);
+		try{
+			if(width <= 0.0f|| length <= 0.0f) {
+				throw new NullPointerException();
+			}
 		partBuilder = getEntity().createPartBuilder();
 		if (length <  2.f) {
 			length = 2.f;
@@ -60,7 +64,10 @@ public class Bascule extends GameEntity implements Actor{
         revoluteConstraintBuilder.build();
          	
 	        getOwner().addActor(this);
+		} catch(NullPointerException e) {
+			System.out.println("Paramètre(s) indispensable(s) erronés");
 		}
+	}
     
     @Override
 	public void draw(Canvas canvas) {
