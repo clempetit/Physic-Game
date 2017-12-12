@@ -17,8 +17,12 @@ Infrastructure :
 
 Extensions effectuées : 
 
-          1) Gestion de niveaux de jeu (avec 4 différents niveaux) : CLEMENTINETTE
-          
+          1) Gestion de niveaux de jeu (avec 4 différents niveaux) : CLEMENTINETTE.
+                      Pour l'affichage du texte de transition de niveau "NEXT LEVEL!" : Création d'une méthode dans ActorGame qui permet de créer un texte avec comme argument la transparence, qu’on a pu appeler sous une condition if dans la méthode update de bike game.
+                      A cet effet nous avons créé deux variables float : time et transparency. Transparency initialisé à 1.f (opaque), et time initialisé à une valeur supérieure à celle dans la condition if (pour que le message ne s’affiche pas dès le premier niveau). 
+                      Ces valeurs vont être modifié par la suite à chaque fois que l’on passera un niveau: time devient -3.0f et transparency 1.0f. La condition if permet de choisir combien de temps on veut afficher le message, ainsi que de le disparaître petit à petit.
+                   
+                    
           2) Trigger + Finish + Checkpoint :  CLEMENTINE
           
           
