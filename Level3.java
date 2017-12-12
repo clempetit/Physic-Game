@@ -3,6 +3,7 @@
  *	Date:        15.10.2015
  */
 
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -48,7 +49,7 @@ public class Level3 extends Level {
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 1.0f);
 		bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(65.0f, 4.0f));
-        puit = new GravityWell(getActorGame(), true, new Vector(25.0f, 0.0f), new Vector(0.0f, 50.0f));
+        puit = new GravityWell(getActorGame(), true, new Vector(25.0f, 0.0f), new Vector(0.0f, 50.0f), 0.5f, 5.0f, 7.0f);
         cp = new Checkpoint(getActorGame(), cpPos);
         
 
