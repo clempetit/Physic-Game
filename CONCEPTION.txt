@@ -1,6 +1,14 @@
 En cas où un problème surviendrait (utf-8, chargement des niveaux etc.) : https://github.com/clempetit/Physic-Game
 
 
+Ressources extérieures : 
+          - image de la roue utilisée dans le jeu ("wheel2.png") : http://pngimg.com/download/23312
+
+          
+   
+Infrastructure : 
+  
+  
 
 
 
@@ -19,5 +27,3 @@ En cas où un problème surviendrait (utf-8, chargement des niveaux etc.) : http
 
 
 
-
-Ressources 
