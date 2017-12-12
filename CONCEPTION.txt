@@ -44,8 +44,9 @@ Extensions effectuées :
                                     
                                     - Pédalage : De même que pour les bras, il a fallu créer des getter setter pour accéder aux locations des genoux et des pieds (à noter que pour plus de réalisme, nous avons construit un deuxième genoux). 
                                         Ensuite, à l'aide d'un getter pour la position angulaire dans la class Wheel, nous avons pu accéder à la position angulaire de la roue motrice (arrière, donc différente selon l'orientation du cycliste).
-                                        Celle-ci, liée aux fonctions trigonomètriques sinus et cosinus, nous a permis de donner un mouvement circulaire aux deux pieds, autour d'un cercle de centre (0.f,0.1f) et de rayon 0.25f. 
-                                        
+                                        Celle-ci, liée aux fonctions trigonomètriques sinus et cosinus, nous a permis de donner un mouvement circulaire aux deux pieds, autour d'un cercle de centre (0.f,0.1f) et de rayon 0.25f.
+                                        La position angulaire, à l'aide de la fonction sinus, a également permis de mettre les deux genoux en mouvement rectiligne. Les deux genoux se croisant au point (0.f, 0.65f) et parcourant une distance 0.4f en "diagonale"
+                                        A savoir: afin de réussir à coordonner les pieds entre eux, puis les genoux entre eux et enfin pieds et genoux il a fallu jouer sur les signes devant l'angle et devant la fonction trigonomètrique.
 
 
 
