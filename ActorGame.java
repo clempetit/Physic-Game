@@ -105,8 +105,7 @@ public abstract class ActorGame implements Game {
 	}
 	
 	public void checkpointText(float transparency) {
-		showText(" CHECKPOINT ", 0.20f, -0.8f,-0.6f, Color.BLUE, Color.WHITE, true, false, transparency);
-		showText(" SAVED ! ", 0.20f, 0.5f,-0.6f, Color.BLUE, Color.WHITE, true, false, transparency);
+		showText(" CHECKPOINT ", 0.15f, 0.0f,-0.6f, Color.BLUE, Color.WHITE, true, false, transparency);
 	}
 	
 	
@@ -161,6 +160,5 @@ public abstract class ActorGame implements Game {
 	@Override
 	public void end() {
 	}
-
 
 }
