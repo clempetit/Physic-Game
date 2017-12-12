@@ -4,6 +4,7 @@
  */
 
 
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -68,10 +69,10 @@ public class Level4 extends Level {
 		bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(140.0f, -5.0f));
         cp = new Checkpoint(getActorGame(), cpPos);
-        puitBasGauche = new GravityWell(getActorGame(), true, posPuitBasGauche, new Vector(-10.0f, 40.0f), 0.1f, 10.0f, 15.0f);
-        puitBasDroite = new GravityWell(getActorGame(), true, posPuitBasDroite, new Vector(20.0f, 0.0f), 0.1f, 10.0f, 15.0f);
-        puitHautGauche = new GravityWell(getActorGame(), true, posPuitHautGauche, new Vector(20.0f, 0.0f), 0.1f, 10.0f, 15.0f);
-        puitHautDroite = new GravityWell(getActorGame(), true, posPuitHautDroite, new Vector(0.0f, -20.0f), 0.1f, 10.0f, 15.0f);
+        puitBasGauche = new GravityWell(getActorGame(), true, posPuitBasGauche, new Vector(-10.0f, 40.0f), 0.f, 10.0f, 15.0f);
+        puitBasDroite = new GravityWell(getActorGame(), true, posPuitBasDroite, new Vector(20.0f, 0.0f), 0.f, 10.0f, 15.0f);
+        puitHautGauche = new GravityWell(getActorGame(), true, posPuitHautGauche, new Vector(20.0f, 0.0f), 0.f, 10.0f, 15.0f);
+        puitHautDroite = new GravityWell(getActorGame(), true, posPuitHautDroite, new Vector(0.0f, -20.0f), 0.f, 10.0f, 15.0f);
         crateMurGauche = new Crate(getActorGame(), true, new Vector(posPuitBasGauche.getX()-2.0f, posPuitBasGauche.getY()+4.f), "box.4.png", 2.f, 28.0f, 0.3f);
         cratePlafond = new Crate(getActorGame(), true, new Vector(posPuitBasGauche.getX(), posPuitBasGauche.getY()+30.f), "box.4.png",20.f , 2.f, 0.3f);
         crateMurDroite = new Crate(getActorGame(), true, new Vector(posPuitBasDroite.getX()+10.0f, posPuitBasDroite.getY()+4.f), "box.4.png", 2.f, 28.0f, 0.3f);
