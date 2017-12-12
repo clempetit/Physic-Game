@@ -23,12 +23,13 @@ public class Level3 extends Level {
 	private Bike bike;
 	private Finish finish;
 	private GravityWell puit;
-	
+	private Checkpoint cp;
+	private Vector cpPos = new Vector (47.0f, 4.0f);
 	public Level3(ActorGame game) {
 		super(game);
 	}
 	
-	public void createAllActors() {
+	public void createAllActors(Vector bikePos) {
 		
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
@@ -44,16 +45,25 @@ public class Level3 extends Level {
 		
 		
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 1.0f);
-		bike = new Bike(getActorGame(), false, new Vector(0.0f, 3.0f));
+		bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(49.0f, 4.0f));
         puit = new GravityWell(getActorGame(), true, new Vector(25.0f, 0.0f), new Vector(0.0f, 50.0f));
-        
+        cp = new Checkpoint(getActorGame(), cpPos);
         
 
         getActorGame().setViewCandidates(bike);
         
         
 	}
+	
+	
+	public Vector getCpPos() {
+		return cpPos;
+	}
+	public Checkpoint getCp() {
+		return cp;
+	}
+	
 	
 	public void update(float deltaTime) {
 		puit.gravityAction(bike.getBikeEntity());
@@ -67,6 +77,8 @@ public class Level3 extends Level {
 	public Bike getBike() {
 		return bike;
 	}
+	
+	
 	
 	@Override
 	public void draw(Canvas canvas) {
