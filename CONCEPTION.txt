@@ -17,22 +17,22 @@ Infrastructure :
 
 Extensions effectuées : 
 
-          1) Gestion de niveaux de jeu (avec 4 différents niveaux).
+          1) Gestion de niveaux de jeu (avec 4 différents niveaux) :
           
-          2) Trigger + Finish + Checkpoint.
+          2) Trigger + Finish + Checkpoint :
           
-          3) Pendule, voir les niveaux 2 et 4.
+          3) Pendule, voir les niveaux 2 et 4 : 
           
-          4) Bascule, voir les niveaux 2 et 4.
+          4) Bascule, voir les niveaux 2 et 4 :
 
-          5) Puit de gravité (sans particules), voir les niveaux 3 et 4.
+          5) Puit de gravité (sans particules), voir les niveaux 3 et 4 :
           
-          6) Terrain glissant, voir niveau 4.
+          6) Terrain glissant, voir niveau 4 : il a suffit réduire le float friction à 0.3f par exemple dans l'appel du       constructeur de la classe Terrain pour réaliser cette extension.
           
           7) Animation du cycliste : 
-                                    - Bras levé, voir la fin du niveau 4.
+                                    - Bras levé, voir la fin du niveau 4 :
                                     
-                                    - Pédalage.
+                                    - Pédalage :
 
 
 
