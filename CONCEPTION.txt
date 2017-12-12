@@ -17,22 +17,35 @@ Infrastructure :
 
 Extensions effectuées : 
 
-          1) Gestion de niveaux de jeu (avec 4 différents niveaux) :
+          1) Gestion de niveaux de jeu (avec 4 différents niveaux) : CLEMENTINETTE
           
-          2) Trigger + Finish + Checkpoint :
+          2) Trigger + Finish + Checkpoint :  CLEMENTINE
           
-          3) Pendule, voir les niveaux 2 et 4 : 
           
-          4) Bascule, voir les niveaux 2 et 4 :
+          3) Pendule, voir les niveaux 2 et 4 :  Création d'une class Pendulum et d'une class Ball. La balle et le pendule sont des entités du jeu et se comportent comme des acteurs. 
+             Le pendule est constitué d'un block relié (par une corde invisible) à la balle qui a une forme de cercle. 
+             Le constructeur de Ball permet de changer son apparence, sa position, son rayon, et de déterminer si elle est fixe ou non. 
+             Le constructeur de Pendulum permet de changer sa position et la distance entre le block et le cercle.
+                   
+          
+          4) Bascule, voir les niveaux 2 et 4 : Création d'une class Bascule, qui est une entité du jeu et se comporte en tant qu'acteur.  CLEMINETTE (constitué de deux blocs?). 
+             Son constructeur permet de changer la postion, ainsi que les dimensions du pont.
 
-          5) Puit de gravité (sans particules), voir les niveaux 3 et 4 :
+
+          5) Puit de gravité (sans particules), voir les niveaux 3 et 4 : Création d'une class GravityWell, qui est une entité du jeu et se comporte comme un acteur. Celle-ci construit une zone rectangle qui va appliqué une force pouvant défier la gravité. 
+             Son constructeur permet de déterminer si elle est fixe ou non, ainsi que de choisir sa dimension, sa transparence, sa position et la force qu'elle applique.
           
-          6) Terrain glissant, voir niveau 4 : il a suffit réduire le float friction à 0.3f par exemple dans l'appel du       constructeur de la classe Terrain pour réaliser cette extension.
+          
+          6) Terrain glissant, voir niveau 4 : Réduction du float friction à 0.3f par exemple dans l'appel du constructeur de la class Terrain pour réaliser cette extension.
           
           7) Animation du cycliste : 
-                                    - Bras levé, voir la fin du niveau 4 :
+                                    - Bras levé, voir la fin du niveau 4 : Création de getter setter pour la location de la main dans la classe bike.
+                                        Ces méthodes ont permis de réorienter la position du bras, initialement vers le bas, vers le haut à la condition que le jeu est fini dans la méthode update de la class BikeGame.  
                                     
-                                    - Pédalage :
+                                    - Pédalage : De même que pour les bras, il a fallu créer des getter setter pour accéder aux locations des genoux et des pieds (à noter que pour plus de réalisme, nous avons construit un deuxième genoux). 
+                                        Ensuite, à l'aide d'un getter pour la position angulaire dans la class Wheel, nous avons pu accéder à la position angulaire de la roue motrice (arrière, donc différente selon l'orientation du cycliste).
+                                        Celle-ci, liée aux fonctions trigonomètriques sinus et cosinus, nous a permis de donner un mouvement circulaire aux deux pieds, autour d'un cercle de centre (0.f,0.1f) et de rayon 0.25f. 
+                                        
 
 
 
