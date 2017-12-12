@@ -12,7 +12,7 @@ Contrôles du cycliste:
    - BOTTOM ARROW (flèche vers le bas) pour freiner.
    - RIGHT ARROW (flèche vers la droite) pour mettre le cycliste en rotation vers la droite.
    - LEFT ARROW (flèche vers la gauche) pour mettre le cycliste en rotation vers la gauche.
-   - SPACE pour changer le sens du cycliste.
+   - SPACE (espace) pour changer le sens du cycliste.
 
 Le jeu BikeGame comporte quatre niveaux. Le but du jeu est de faire parvenir le cycliste à la fin du parcours (drapeau rouge) sans lui faire toucher le sol ou des obstacles. Seules les roues peuvent toucher ces derniers.
 Les obstacles en question peuvent être de différentes natures : caisses, pendule, pont etc.
