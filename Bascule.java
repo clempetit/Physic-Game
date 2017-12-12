@@ -34,8 +34,8 @@ public class Bascule extends GameEntity implements Actor{
 		polygon = new Polygon(
 				0.0f, 0.0f,
 				2.0f, 0.0f,
-				2.0f, 1.0f,
-				0.0f, 1.0f
+				2.0f, 0.2f,
+				0.0f, 0.2f
 				);
 		
 			partBuilder.setShape(polygon);
@@ -45,14 +45,14 @@ public class Bascule extends GameEntity implements Actor{
         bridge = new Crate(getOwner(), false, position.add(0.0f, 1.0f), "stone.7.png", width, length, 1.0f);
         //ball.attach(getEntity(), new Vector(blockWidth/2, 0.f), length);
         
-        blockGraphics = new ImageGraphics("stone.2.png", 2.0f, 1.0f);
+        blockGraphics = new ImageGraphics("stone.2.png", 2.0f, 0.2f);
         blockGraphics.setParent(getEntity());
         
         RevoluteConstraintBuilder revoluteConstraintBuilder =
         		getOwner().createRevoluteConstraintBuilder();
         revoluteConstraintBuilder.setFirstEntity(getEntity());
         revoluteConstraintBuilder.setFirstAnchor(new Vector(1.0f,
-        		1.0f));
+        		0.2f));
         revoluteConstraintBuilder.setSecondEntity(bridge.getEntity());
         revoluteConstraintBuilder.setSecondAnchor(new Vector(width,
         		0.0f));
@@ -70,3 +70,4 @@ public class Bascule extends GameEntity implements Actor{
     
     
 }
+
