@@ -24,13 +24,15 @@ public class Level1 extends Level{
 	private Crate crate3;
 	private Bike bike;
 	private Finish finish;
-	
+	private Checkpoint cp;
+	private Vector cpPos = new Vector (40.0f, -5.0f);
 	public Level1(ActorGame game) {
 		super(game);
 	}
-	public void createAllActors() {
+	public void createAllActors(Vector bikePos) {
 		final float crateWidth = 1.0f;
         final float crateHeight = 1.0f;
+        
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
 				-1000.0f, 0.0f, 0.0f, 0.0f,
@@ -51,9 +53,17 @@ public class Level1 extends Level{
         crate1 = new Crate(getActorGame(), false, new Vector(0.0f, 5.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate2 = new Crate(getActorGame(), false, new Vector(0.2f, 7.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
         crate3 = new Crate(getActorGame(), false, new Vector(2.0f, 6.0f), "box.4.png", crateWidth, crateHeight, 1.0f);
-        bike = new Bike(getActorGame(), false, new Vector(4.0f, 5.0f));
+        bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(45.0f, -5.0f));
+        cp = new Checkpoint(getActorGame(), cpPos);
         getActorGame().setViewCandidates(bike);
+	}
+	
+	public Vector getCpPos() {
+		return cpPos;
+	}
+	public Checkpoint getCp() {
+		return cp;
 	}
 	
 	@Override
@@ -88,5 +98,6 @@ public class Level1 extends Level{
 	public Vector getVelocity() {
 		return terrain.getEntity().getVelocity();
 	}
+	
 		
 }
