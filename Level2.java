@@ -9,7 +9,7 @@ import java.awt.Color;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
-import ch.epfl.cs107.play.game.actor.crate.Crate;
+import ch.epfl.cs107.play.game.actor.general.Bascule;
 import ch.epfl.cs107.play.game.actor.general.Pendulum;
 import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.math.Polyline;
@@ -21,10 +21,11 @@ public class Level2 extends Level {
 	private Polyline polyline;
 	private Terrain terrain;
 	private Pendulum pendulum;
+	private Bascule bascule;
 	private Bike bike;
 	private Finish finish;
 	private Vector bikePos = new Vector (4.0f, 5.0f);
-	private Vector cpPos = new Vector(45.0f, -5.0f);
+	private Vector cpPos = new Vector(55.0f, -5.0f);
 	private Checkpoint cp;
 	
 	public Level2(ActorGame game) {
@@ -43,18 +44,24 @@ public class Level2 extends Level {
 				25.0f, 4.0f,
 				25.0f, 0.0f,
 				35.0f, -5.0f,
-				70.0f, -5.0f,
-				85.0f, -4.0f,
-				100.0f, 0.0f,
-				101.0f, 0.0f,
-				101.0f, -1000.0f
+				60.0f, -5.0f,
+				80.0f, -8.0f,
+				83.0f, -8.0f,
+				83.0f, -20.0f,
+				89.0f, -20.0f,
+				89.0f, -7.0f,
+				95.0f, -7.0f,
+				105.0f, -5.0f,
+				106.0f, -5f,
+				106.0f, -1000.0f
 				);
 		
         
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 1.0f);
 		pendulum = new Pendulum(getActorGame(), new Vector(50.0f, 0.0f), 3.0f);
+		bascule = new Bascule(getActorGame(), new Vector(83.0f, -9.0f), 0.8f, 5.0f);
 		bike = new Bike(getActorGame(), false, bikePos);
-        finish = new Finish(getActorGame(), new Vector(100.0f, 0.0f));
+        finish = new Finish(getActorGame(), new Vector(105.0f, -5.0f));
         cp = new Checkpoint(getActorGame(), cpPos);
         getActorGame().setViewCandidates(bike);
        
