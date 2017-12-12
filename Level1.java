@@ -25,9 +25,8 @@ public class Level1 extends Level{
 	private Bike bike;
 	private Finish finish;
 	private Checkpoint cp;
-	private boolean arrived_cp;
 	private Vector bikePos = new Vector (4.0f, 5.0f);
-	private Vector cpPos = new Vector (40.0f, -5.0f);
+	private Vector cpPos = new Vector (-10.0f, 0.0f);
 	public Level1(ActorGame game) {
 		super(game);
 	}
@@ -38,7 +37,8 @@ public class Level1 extends Level{
         }
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
-				-1000.0f, 0.0f, 0.0f, 0.0f,
+				-1000.0f, 0.0f,
+				0.0f, 0.0f,
 				3.0f, 1.0f,
 				8.0f, 1.0f,
 				15.0f, 3.0f,
