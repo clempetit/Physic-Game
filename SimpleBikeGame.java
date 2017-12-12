@@ -18,7 +18,7 @@ import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 
-public class BikeGame extends ActorGame{
+public class SimpleBikeGame extends ActorGame{
 	private Polyline polyline;
 	private Terrain terrain;
 	private Polygon polygon;
