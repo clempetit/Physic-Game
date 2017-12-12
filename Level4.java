@@ -3,9 +3,6 @@
  *	Date:        15.10.2015
  */
 
-
-
-
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -96,7 +93,7 @@ public class Level4 extends Level {
         cratePlafond = new Crate(getActorGame(), true, new Vector(posPuitBasGauche.getX(), posPuitBasGauche.getY()+30.f), "box.4.png",20.f , 2.f, 0.3f);
         crateMurDroite = new Crate(getActorGame(), true, new Vector(posPuitBasDroite.getX()+10.0f, posPuitBasDroite.getY()+4.f), "box.4.png", 2.f, 28.0f, 0.3f);
         crateMurMilieu = new Crate(getActorGame(), true, new Vector(posPuitBasGauche.getX()+9.0f, posPuitBasGauche.getY()), "box.4.png", 2.f, 25.0f, 0.3f);
-        bascule = new Bascule(getActorGame(), new Vector(34.0f, -4.8f), 0.5f, 9.0f);
+        bascule = new Bascule(getActorGame(), new Vector(34.0f, -5.0f), 0.5f, 9.0f);
         pendule1 = new Pendulum(getActorGame(), new Vector(16.0f, 5.0f), 4.0f );
         pendule2 = new Pendulum(getActorGame(), new Vector(70.0f, -9.0f), 4.6f );
         getActorGame().setViewCandidates(bike);
