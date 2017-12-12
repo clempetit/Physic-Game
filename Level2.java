@@ -59,7 +59,7 @@ public class Level2 extends Level {
         
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 1.0f);
 		pendulum = new Pendulum(getActorGame(), new Vector(50.0f, 0.0f), 3.0f);
-		bascule = new Bascule(getActorGame(), new Vector(83.0f, -9.0f), 0.8f, 5.0f);
+		bascule = new Bascule(getActorGame(), new Vector(83.0f, -8.2f), 0.8f, 5.0f);
 		bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(105.0f, -5.0f));
         cp = new Checkpoint(getActorGame(), cpPos);
