@@ -23,14 +23,16 @@ public class Level2 extends Level {
 	private Pendulum pendulum;
 	private Bike bike;
 	private Finish finish;
+	private Vector cpPos = new Vector(45.0f, -5.0f);
+	private Checkpoint cp;
 	
 	public Level2(ActorGame game) {
 		super(game);
 	}
 	
-	public void createAllActors() {
-		final float crateWidth = 1.0f;
-        final float crateHeight = 1.0f;
+	public void createAllActors(Vector bikePos) {
+	
+       
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
 				-1000.0f, -500.0f,
@@ -49,15 +51,25 @@ public class Level2 extends Level {
         
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 1.0f);
 		pendulum = new Pendulum(getActorGame(), new Vector(50.0f, 0.0f), 3.0f);
-		bike = new Bike(getActorGame(), false, new Vector(4.0f, 5.0f));
+		bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(100.0f, 0.0f));
+        cp = new Checkpoint(getActorGame(), cpPos);
         getActorGame().setViewCandidates(bike);
+       
+	}
+	
+	public Vector getCpPos() {
+		return cpPos;
+	}
+	public Checkpoint getCp() {
+		return cp;
 	}
 	
 	@Override
 	public Finish getFinish() {
 		return finish;
 	}
+
 	
 	@Override
 	public Bike getBike() {
