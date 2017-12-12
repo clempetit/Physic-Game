@@ -49,7 +49,6 @@ public class Pendulum extends GameEntity implements Actor{
 		
 			partBuilder.setShape(polygon);
 			partBuilder.setGhost(false);
-			partBuilder.setCollisionSignature(1);
 	        partBuilder.build();
        
         ball = new Ball(getOwner(), "explosive.cracked.11.png", false, position.add(-length, 0.5f),  0.5f);
