@@ -9,6 +9,7 @@ import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Transform;
@@ -19,7 +20,7 @@ public class Crate extends GameEntity implements Actor {
 	
 	private PartBuilder partBuilder;
 	private ImageGraphics crateGraphics;
-	
+	private Polygon polygon;
 	public Crate(ActorGame game, boolean fixed, Vector position, String image, float width, float height, float friction) {
 		super(game, fixed, position);
 		partBuilder = getEntity().createPartBuilder();
@@ -27,7 +28,7 @@ public class Crate extends GameEntity implements Actor {
 			if (width <= 0 || height <= 0) {
 				throw new IllegalArgumentException("Paramètres invalides");
 			}
-			Polygon polygon = new Polygon( new Vector(0.0f, 0.0f), new Vector(width, 0.0f),
+			polygon = new Polygon( new Vector(0.0f, 0.0f), new Vector(width, 0.0f),
 	        		new Vector(width, height), new Vector(0.0f, height) );
 			
 			partBuilder.setShape(polygon);
@@ -44,9 +45,13 @@ public class Crate extends GameEntity implements Actor {
 	}
 	
 	@Override
+	public Entity getEntity() {
+		return super.getEntity();
+	}
+	
+	@Override
 	public void draw(Canvas canvas) {
-		// TODO Auto-generated method stub
 		crateGraphics.draw(canvas);
 	}
-
+	
 }
