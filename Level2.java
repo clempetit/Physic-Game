@@ -10,6 +10,7 @@ import java.awt.Color;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.crate.Crate;
+import ch.epfl.cs107.play.game.actor.general.Pendulum;
 import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
@@ -19,6 +20,7 @@ import ch.epfl.cs107.play.window.Canvas;
 public class Level2 extends Level {
 	private Polyline polyline;
 	private Terrain terrain;
+	private Pendulum pendulum;
 	private Bike bike;
 	private Finish finish;
 	
@@ -31,23 +33,24 @@ public class Level2 extends Level {
         final float crateHeight = 1.0f;
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
-				-1000.0f, 0.0f, 0.0f, 0.0f,
-				3.0f, 1.0f,
-				8.0f, 1.0f,
-				15.0f, 3.0f,
-				16.0f, 3.0f,
+				-1000.0f, -500.0f,
+				0.0f, 0.0f,
+				8.0f,0.0f,
+				25.0f, 4.0f,
 				25.0f, 0.0f,
 				35.0f, -5.0f,
-				50.0f, -5.0f,
-				55.0f, -4.0f,
-				65.0f, 0.0f,
-				6500.0f, -1000.0f
+				70.0f, -5.0f,
+				85.0f, -4.0f,
+				100.0f, 0.0f,
+				101.0f, 0.0f,
+				101.0f, -1000.0f
 				);
 		
         
-		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 0.3f);
+		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 1.0f);
+		pendulum = new Pendulum(getActorGame(), new Vector(50.0f, 0.0f), 3.0f);
 		bike = new Bike(getActorGame(), false, new Vector(4.0f, 5.0f));
-        finish = new Finish(getActorGame(), new Vector(45.0f, -5.0f));
+        finish = new Finish(getActorGame(), new Vector(100.0f, 0.0f));
         getActorGame().setViewCandidates(bike);
 	}
 	
