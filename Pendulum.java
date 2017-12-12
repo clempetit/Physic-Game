@@ -5,19 +5,13 @@
 
 package ch.epfl.cs107.play.game.actor.general;
 
-import java.awt.Color;
-
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
-import ch.epfl.cs107.play.game.actor.crate.Crate;
-import ch.epfl.cs107.play.math.Circle;
-import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -33,6 +27,10 @@ public class Pendulum extends GameEntity implements Actor{
     
     public Pendulum(ActorGame game, Vector position, float length) {
 		super(game, true, position);
+		try{
+			if(length <= 0.0f) {
+				throw new NullPointerException();
+			}
 		partBuilder = getEntity().createPartBuilder();
 		if (length <  1.f) {
 			length = 1.f;
@@ -56,6 +54,9 @@ public class Pendulum extends GameEntity implements Actor{
         
         blockGraphics = new ImageGraphics("stone.broken.4.png", blockWidth, blockHeight);
         blockGraphics.setParent(getEntity());
+		} catch(NullPointerException e) {
+			System.out.println("Paramètre(s) indispensable(s) erronés");
+		}
          	
 	        getOwner().addActor(this);
 		}
