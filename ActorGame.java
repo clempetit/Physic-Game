@@ -104,7 +104,10 @@ public abstract class ActorGame implements Game {
 		showText(" LEVEL ! ", 0.20f, 0.4f,-0.6f, Color.BLUE, Color.WHITE, true, false, transparency);
 	}
 	
-	
+	public void checkpointText(float transparency) {
+		showText(" CHECKPOINT ", 0.20f, -0.8f,-0.6f, Color.BLUE, Color.WHITE, true, false, transparency);
+		showText(" SAVED ! ", 0.20f, 0.5f,-0.6f, Color.BLUE, Color.WHITE, true, false, transparency);
+	}
 	
 	
 	public void defeatText() {
