@@ -60,7 +60,6 @@ public class Bike extends GameEntity implements Actor{
 		
 			partBuilder.setShape(polygon);
 			partBuilder.setGhost(false);
-			partBuilder.setCollisionSignature(1);
 	        partBuilder.build();
 	        
 	        leftWheel = new Wheel(getOwner(), false, position.add(-1.0f, 0.f),  0.5f);
