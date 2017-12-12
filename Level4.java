@@ -21,14 +21,15 @@ public class Level4 extends Level {
 	private Terrain terrain;
 	private Bike bike;
 	private Finish finish;
+	private Checkpoint cp;
+	private Vector cpPos = new Vector(40.0f, -5.0f);
 	
 	public Level4(ActorGame game) {
 		super(game);
 	}
 	
-	public void createAllActors() {
-		final float crateWidth = 1.0f;
-        final float crateHeight = 1.0f;
+	public void createAllActors(Vector bikePos) {
+		
 		polyline = new Polyline(
 				-1000.0f, -1000.0f,
 				-1000.0f, 0.0f, 0.0f, 0.0f,
@@ -46,9 +47,18 @@ public class Level4 extends Level {
 		
         
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 0.3f);
-		bike = new Bike(getActorGame(), false, new Vector(4.0f, 5.0f));
+		bike = new Bike(getActorGame(), false, bikePos);
         finish = new Finish(getActorGame(), new Vector(45.0f, -5.0f));
+        cp = new Checkpoint(getActorGame(), cpPos);
         getActorGame().setViewCandidates(bike);
+	}
+	
+	public Vector getCpPos() {
+		return cpPos;
+	}
+	
+	public Checkpoint getCp() {
+		return cp;
 	}
 	
 	@Override
