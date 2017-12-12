@@ -1,0 +1,22 @@
+Clément PETIT - Yanis BERKANI
+EPFL - Bachelor 1 Section Informatique
+Introduction à la Programmation
+
+Projet 2 : Physic Game
+
+Pour lancer le jeu BikeGame, il suffit de lancer la méthode main de la classe Program.java, avec l’attribut game prenant la valeur new BikeGame() .
+
+Pour contrôler le cycliste, on utilise les quatre flèches du clavier : 
+   - HAUT pour avancer
+   - BAS pour freiner
+   - DROITE et GAUCHE pour faire pivoter le vélo dans un sens ou dans l’autre
+   - SPACE pour changer le sens du cycliste.
+
+Le jeu BikeGame comporte quatre niveaux. Le but du jeu est de faire parvenir le cycliste à la fin du parcours (drapeau rouge) sans lui faire toucher le sol ou des obstacles. Seules les roues peuvent toucher ces derniers.
+Les obstacles en question peuvent être de différentes natures : caisses, pendule, pont…
+
+Si le cycliste touche le sol ou un obstacle, le niveau est perdu. Il suffit d’appuyer sur R pour le réessayer.
+
+Quand un niveau est réussi, le niveau suivant démarre automatiquement, et une fois tous les niveaux réussis, le jeu est gagné et le personnage lève les bras en l’air. Il est alors possible de recommencer le jeu du début en appuyant sur R.
+
+Bien que les niveaux soient relativement simples à effectuer, on notera que la fin du niveau 4 est un peu plus compliquée, mais toutefois faisable.
