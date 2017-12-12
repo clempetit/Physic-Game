@@ -5,6 +5,7 @@
 
 
 
+
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
@@ -12,7 +13,9 @@ import java.awt.Color;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.crate.Crate;
+import ch.epfl.cs107.play.game.actor.general.Bascule;
 import ch.epfl.cs107.play.game.actor.general.GravityWell;
+import ch.epfl.cs107.play.game.actor.general.Pendulum;
 import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
@@ -25,6 +28,15 @@ public class Level4 extends Level {
 	private Bike bike;
 	private Finish finish;
 	private Checkpoint cp;
+	
+	// variable(s) de la partie concernant la bascule
+	private Bascule bascule;
+	
+	// variable(s) de la partie concernant le pendule
+	private Pendulum pendule1;
+	private Pendulum pendule2;
+	
+	// variable(s) de la partie concernant le puit 
 	private GravityWell puitBasGauche;
 	private GravityWell puitBasDroite;
 	private GravityWell puitHautGauche;
@@ -34,11 +46,13 @@ public class Level4 extends Level {
 	private Crate crateMurDroite;
 	private Crate crateMurMilieu;
 	private Vector bikePos = new Vector (0.0f, 0.0f);
-	private Vector cpPos = new Vector(100.0f, -5.0f);
+	private Vector cpPos = new Vector(65.0f, -15.0f);
 	private Vector posPuitBasGauche;
 	private Vector posPuitBasDroite;
 	private Vector posPuitHautGauche;
 	private Vector posPuitHautDroite;
+	
+	
 	
 	public Level4(ActorGame game) {
 		super(game);
@@ -56,18 +70,23 @@ public class Level4 extends Level {
 				-5.0f, 0.0f,
 				15.0f, 0.0f,
 				25.0f, -5.0f,
-				150.0f, -5.0f,
+				35.0f, -5.0f,
+				35.0f, -20.0f,
+				43.0f, -20.0f,
+				43.0f, -5.0f,
+				60.0f, -15.0f,
+				130.0f,-15.0f,
 				6500.0f, -1000.0f
 				);
 		
-		posPuitBasGauche = new Vector(105.0f, -5.0f);
-		posPuitBasDroite = new Vector(115.0f, -5.0f);
-		posPuitHautGauche = new Vector(105.0f, 10.0f);
-		posPuitHautDroite = new Vector(115.0f, 10.0f);
+		posPuitBasGauche = new Vector(85.0f, -15.0f);
+		posPuitBasDroite = new Vector(95.0f, -15.0f);
+		posPuitHautGauche = new Vector(85.0f, 0.0f);
+		posPuitHautDroite = new Vector(95.0f, 0.0f);
 				
 		terrain = new Terrain(getActorGame(), polyline, Color.GRAY, Color.green, 0.3f);
 		bike = new Bike(getActorGame(), false, bikePos);
-        finish = new Finish(getActorGame(), new Vector(140.0f, -5.0f));
+        finish = new Finish(getActorGame(), new Vector(110.0f, -15.0f));
         cp = new Checkpoint(getActorGame(), cpPos);
         puitBasGauche = new GravityWell(getActorGame(), true, posPuitBasGauche, new Vector(-10.0f, 40.0f), 0.f, 10.0f, 15.0f);
         puitBasDroite = new GravityWell(getActorGame(), true, posPuitBasDroite, new Vector(20.0f, 0.0f), 0.f, 10.0f, 15.0f);
@@ -77,6 +96,9 @@ public class Level4 extends Level {
         cratePlafond = new Crate(getActorGame(), true, new Vector(posPuitBasGauche.getX(), posPuitBasGauche.getY()+30.f), "box.4.png",20.f , 2.f, 0.3f);
         crateMurDroite = new Crate(getActorGame(), true, new Vector(posPuitBasDroite.getX()+10.0f, posPuitBasDroite.getY()+4.f), "box.4.png", 2.f, 28.0f, 0.3f);
         crateMurMilieu = new Crate(getActorGame(), true, new Vector(posPuitBasGauche.getX()+9.0f, posPuitBasGauche.getY()), "box.4.png", 2.f, 25.0f, 0.3f);
+        bascule = new Bascule(getActorGame(), new Vector(34.0f, -4.8f), 0.5f, 9.0f);
+        pendule1 = new Pendulum(getActorGame(), new Vector(16.0f, 5.0f), 4.0f );
+        pendule2 = new Pendulum(getActorGame(), new Vector(70.0f, -9.0f), 4.6f );
         getActorGame().setViewCandidates(bike);
 	}
 	
