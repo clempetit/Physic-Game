@@ -3,6 +3,7 @@
  *	Date:        15.10.2015
  */
 
+
 package ch.epfl.cs107.play.game.actor.general;
 
 import java.awt.Color;
@@ -27,13 +28,15 @@ public class GravityWell extends GameEntity implements Actor{
 	private Polygon polygon;
 	private ShapeGraphics puit;
 	private Vector force;
-	private final float puitWidth = 5.0f;
-	private final float puitHeight = 7.0f;
+	private float puitWidth;
+	private float puitHeight;
 	
 	
-	public GravityWell(ActorGame game, boolean fixed, Vector position, Vector force) {
+	public GravityWell(ActorGame game, boolean fixed, Vector position, Vector force, float transparency, float width, float height) {
 		super(game, fixed, position);
 		this.force = force;
+		puitWidth = width ;
+		puitHeight = height ;
 		partBuilder = getEntity().createPartBuilder();
 		polygon = new Polygon(
 				0.0f, 0.0f,
@@ -45,7 +48,7 @@ public class GravityWell extends GameEntity implements Actor{
 		partBuilder.setGhost(true);
 		partBuilder.build();
 		
-		puit = new ShapeGraphics(polygon, Color.BLACK, Color.BLACK, 0, 0.5f, 0);
+		puit = new ShapeGraphics(polygon, Color.BLACK, Color.BLACK, 0, transparency, 0);
 		puit.setParent(this);
 		
 		contactListener = new BasicContactListener();
