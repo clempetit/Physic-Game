@@ -6,7 +6,10 @@
 package ch.epfl.cs107.play.game.actor;
 
 import ch.epfl.cs107.play.game.actor.bike.Bike;
+import ch.epfl.cs107.play.game.actor.bike.Checkpoint;
 import ch.epfl.cs107.play.game.actor.bike.Finish;
+import ch.epfl.cs107.play.math.Vector;
+
 
 public abstract class Level implements Actor{
 	
@@ -19,8 +22,9 @@ public abstract class Level implements Actor{
 		return actorGame;
 	}
 	
-	public abstract void createAllActors();
+	public abstract void createAllActors(Vector bikePos);
 	public abstract Finish getFinish();
 	public abstract Bike getBike();
-	
+	public abstract Checkpoint getCp();	
+	public abstract Vector getCpPos();
 }
