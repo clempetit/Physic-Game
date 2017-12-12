@@ -18,7 +18,7 @@ import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 
-public class LevelGame extends ActorGame implements GameWithLevels{
+public class BikeGame extends ActorGame implements GameWithLevels{
 	
 	
 	private TextGraphics message_fixBug ; 
