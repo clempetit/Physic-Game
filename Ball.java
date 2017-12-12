@@ -36,7 +36,6 @@ public class Ball extends GameEntity implements Actor{
 			circle = new Circle(Math.abs(ballRadius));
 			partBuilder.setFriction(0.5f);
 			partBuilder.setShape(circle);
-			partBuilder.setCollisionSignature(1);
 	        partBuilder.build();
 	        
 	        ballGraphics = new ImageGraphics(image, 2*ballRadius, 2*ballRadius, new Vector(0.5f, 0.5f));
