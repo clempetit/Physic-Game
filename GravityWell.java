@@ -3,18 +3,15 @@
  *	Date:        15.10.2015
  */
 
-
 package ch.epfl.cs107.play.game.actor.general;
 
-import java.awt.Color;
+import java.awt.Color; 
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.BasicContactListener;
-import ch.epfl.cs107.play.math.Contact;
-import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
@@ -34,6 +31,10 @@ public class GravityWell extends GameEntity implements Actor{
 	
 	public GravityWell(ActorGame game, boolean fixed, Vector position, Vector force, float transparency, float width, float height) {
 		super(game, fixed, position);
+		try{
+			if(width <= 0.0f|| height <= 0.0f) {
+				throw new NullPointerException();
+			}
 		this.force = force;
 		puitWidth = width ;
 		puitHeight = height ;
@@ -54,6 +55,9 @@ public class GravityWell extends GameEntity implements Actor{
 		contactListener = new BasicContactListener();
 	    getEntity().addContactListener(contactListener);
 	    getOwner().addActor(this);
+		} catch(NullPointerException e) {
+			System.out.println("Paramètre(s) indispensable(s) erronés");
+		}
 	}
 	
 	public BasicContactListener getListener() {
