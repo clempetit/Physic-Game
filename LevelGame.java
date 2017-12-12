@@ -2,7 +2,6 @@
  *	Author:      Clément Petit
  *	Date:        15.10.2015
  */
-
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;  
@@ -23,10 +22,15 @@ public class LevelGame extends ActorGame implements GameWithLevels{
 	
 	private TextGraphics message_fixBug ; 
 	private boolean finished;
+	
 	private Level level;
 	private int progression = 0;
-	private float time = 2.0f;
-	private float transparency =1.f;
+	private float timerForTransitionText = 2.0f; 
+	private float timerForCheckpointText = -1.0f;
+	private float transparencyForTransitionText =1.f;
+	private float transparencyForCheckpointText =1.f;
+	private Vector bikePos;
+	private boolean arrived_cp = false;
 	protected List<Level> createLevelList() {
 		return Arrays.asList(
 				new Level1(this),
@@ -39,6 +43,7 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     public boolean begin(Window window, FileSystem fileSystem) {
         super.begin(window, fileSystem);
         finished = false;
+        bikePos = new Vector(4.0f, 5.0f);
         
         /* Message vide du départ pour pallier au problème
          * de latence lors de l'arrivée du cycliste (sur mac)
@@ -48,8 +53,14 @@ public class LevelGame extends ActorGame implements GameWithLevels{
         message_fixBug.draw(getCanvas());
         
        level = createLevelList().get(progression);
-       level.createAllActors();
        
+       if(arrived_cp) {
+    	   		bikePos = level.getCpPos();
+       }
+       level.createAllActors(bikePos);
+       
+    
+     
         return true;
     }
     
@@ -119,10 +130,10 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     			 nextLevel();
     		 }
      }
-	  if (time<=1.0f && !(level.getBike().getHit())) {
- 		 	transitionText(transparency);
- 		 	time += deltaTime;
- 		 	transparency -= deltaTime/2;
+	if (timerForTransitionText<=1.0f && !(level.getBike().getHit())) {
+ 		 	transitionText(transparencyForTransitionText);
+ 		 	timerForTransitionText += deltaTime;
+ 		 	transparencyForTransitionText -= deltaTime/2;
  	 }
     	 
     	 if (finished) {
@@ -145,6 +156,16 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     		 level.getBike().setKnee1Location(new Vector((float)(-(Math.sin(level.getBike().getRightWheel().getAngularPosition()/2)))*0.2f, (float)(-(Math.sin(level.getBike().getRightWheel().getAngularPosition()/2)))*0.2f + 0.65f));
     		 level.getBike().setKnee2Location(new Vector((float)Math.sin(level.getBike().getRightWheel().getAngularPosition()/2)*0.2f, (float)Math.sin(level.getBike().getRightWheel().getAngularPosition()/2)*0.2f +0.65f)); 
     	 }
+    	 
+    	 if(level.getCp().hasContactWith(level.getBike().getBikeEntity()) || level.getCp().hasContactWith(level.getBike().getRightWheel().getEntity()) || level.getCp().hasContactWith(level.getBike().getLeftWheel().getEntity()) ) {
+    		 arrived_cp = true;
+    		 if(timerForCheckpointText<=1.0f && !(level.getBike().getHit())) {
+    			 checkpointText(transparencyForCheckpointText);
+    			 timerForCheckpointText+= deltaTime;
+    			 transparencyForCheckpointText -= deltaTime;
+    		 }
+    	 }
+   
     }
     
     @Override
@@ -153,19 +174,25 @@ public class LevelGame extends ActorGame implements GameWithLevels{
     
     @Override
     public void nextLevel() {
+    	arrived_cp = false;
     removeAllActors();
     	progression++;
     	restart(this);
+    	timerForCheckpointText = -1.0f;
+    	transparencyForCheckpointText =1.0f;
     	if (progression>=1){
-    		time = -3.f;
-    		transparency = 1.f;
+    		timerForTransitionText = -3.f;
+    		transparencyForTransitionText = 1.f;
     	}
     }
     
     @Override
     public void resetLevel() {
+    	bikePos = new Vector(4.0f, 5.0f);
     removeAllActors();
     restart(this);
+	arrived_cp = false;
     }
+   
     
 }
