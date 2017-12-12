@@ -29,7 +29,7 @@ public class LevelGame extends ActorGame implements GameWithLevels{
 	private float transparency =1.f;
 	protected List<Level> createLevelList() {
 		return Arrays.asList(
-				new Level3(this),
+				new Level1(this),
 				new Level2(this),
 				new Level3(this),
 				new Level4(this)
