@@ -15,6 +15,7 @@ import ch.epfl.cs107.play.io.FolderFileSystem;
 import ch.epfl.cs107.play.io.ResourceFileSystem;
 import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.Positionable;
+import ch.epfl.cs107.play.math.RevoluteConstraintBuilder;
 import ch.epfl.cs107.play.math.RopeConstraintBuilder;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
@@ -79,6 +80,12 @@ public abstract class ActorGame implements Game {
 	public RopeConstraintBuilder createRopeConstraintBuilder() {
 		return world.createRopeConstraintBuilder();
 	}
+	
+	public RevoluteConstraintBuilder createRevoluteConstraintBuilder() {
+		return world.createRevoluteConstraintBuilder();
+	}
+	
+	
 	
 	public void showText(String text, float size, float abs, float ord, Color fillColor, Color outlineColor, boolean bold, boolean italic, float transparency) {
 		if (size < 0) {size = -size;}
